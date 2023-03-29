@@ -10,4 +10,6 @@ public interface IGenericService<T> {
     T findById(int id);
 
     void deleteById(int id);
+
+
 }

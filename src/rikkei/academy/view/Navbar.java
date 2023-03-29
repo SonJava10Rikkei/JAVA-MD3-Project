@@ -1,6 +1,8 @@
 package rikkei.academy.view;
 
 import rikkei.academy.config.Config;
+import rikkei.academy.validate.ValidateInput;
+import rikkei.academy.view.product.ProductView;
 
 public class Navbar {
     public Navbar() {
@@ -13,19 +15,25 @@ public class Navbar {
             System.out.println("5. Tìm kiếm sản phẩm ");
             System.out.println("0. Thoát chương trình ");
             System.out.println("Mời bạn lựa chọn : ");
-            int chooseMenu = Config.scanner().nextInt();
+            int chooseMenu = ValidateInput.validateInt();
             switch (chooseMenu) {
                 case 1:
+                    new ProductView().showListProduct();
                     break;
                 case 2:
+                    new ProductView().formCreateProduct();
                     break;
                 case 3:
+                    new ProductView().updateProduct();
                     break;
                 case 4:
+                    new ProductView().deleteCategory();
                     break;
                 case 5:
+                    new ProductView().searchProductByName();
                     break;
                 case 0:
+                    System.err.println("Bạn đã thoát chương trình!");
                     System.exit(0);
                     break;
                 default:
