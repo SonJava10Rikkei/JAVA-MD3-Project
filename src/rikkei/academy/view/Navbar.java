@@ -19,12 +19,11 @@ public class Navbar {
             System.out.println("                                              ║             0. Thoát chương trình                      ║");
             System.out.println("                                              '————————————————————————————————————————————————————————'\n");
 
-            System.out.println(".---------------------"+ ColorConfig.BLUE +" Tin nhắn của bạn "+ ColorConfig.RESET +"----------------------.");
+            System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
-            System.out.print("|     ");
             int chooseMenu = ValidateInput.validateInt();
             System.out.println("'-------------------------------------------------------------'\n");
-                    switch (chooseMenu) {
+            switch (chooseMenu) {
                 case 1:
                     new ProductView().showListProduct();
                     break;
@@ -41,11 +40,12 @@ public class Navbar {
                     new ProductView().searchProductByName();
                     break;
                 case 0:
-                    System.err.println("Bạn đã thoát chương trình!");
+                    System.err.println("     Bạn đã thoát chương trình!     ");
                     System.exit(0);
                     break;
                 default:
-                    System.err.println("Hãy nhập lại lựa chọn của bạn (0-8)");
+                    System.err.println("|     Hãy nhập lại lựa chọn của bạn (0-8):                    |");
+
             }
         }
     }

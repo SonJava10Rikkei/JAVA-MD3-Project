@@ -13,7 +13,6 @@ public class ValidateInput {
                 return choice;
             } catch (InputMismatchException e) {
                 System.err.println("|     Nhập định dạng phải là số, vui lòng nhập lại:           |");
-                System.out.print("|     ");
             }
         }
     }

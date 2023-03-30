@@ -31,7 +31,7 @@ public class ProductView {
         System.out.println("                      ║-------------------------------------------------------------------------------------------------------------║");
         for (int i = 0; i < productList.size(); i++) {
             String str3 = numberFormat.format(productList.get(i).getPrice());
-            System.out.printf("                      ║    %d   |    %-15s   |      %-10s    |    %12s  |   %-33s ║\n", productList.get(i).getIdProduct(), productList.get(i).getNameProduct(), productList.get(i).getBrandProduct(), str3, productList.get(i).getDescriptions());
+            System.out.printf("                      ║   %-2d   |    %-15s   |      %-10s    |    %12s  |   %-33s ║\n", productList.get(i).getIdProduct(), productList.get(i).getNameProduct(), productList.get(i).getBrandProduct(), str3, productList.get(i).getDescriptions());
         }
         System.out.println("                      '—————————————————————————————————————————————————————————————————————————————————————————————————————————————'");
         System.out.println("");
@@ -57,20 +57,12 @@ public class ProductView {
             System.out.println("");
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Nhập tên của sản phẩm mới là:                           |");
-            System.out.print("|     ");
-
             String name = Config.scanner().nextLine();
             System.out.println("|     Nhập thương hiệu của sản phẩm mới là:                   |");
-            System.out.print("|     ");
-
             String brand = Config.scanner().nextLine();
             System.out.println("|     Nhập giá của sản phẩm mới là:                           |");
-            System.out.print("|     ");
-
             double price = ValidateInput.validateDouble();
             System.out.println("|     Nhập mô tả của sản phẩm mới là:                         |");
-            System.out.print("|     ");
-
             String descriptions = Config.scanner().nextLine();
             Product newProduct = new Product(id, name, brand, price, descriptions);
             productController.createProduct(newProduct);
@@ -80,9 +72,8 @@ public class ProductView {
             System.out.println("'-------------------------------------------------------------'\n");
             System.out.println("");
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
-            System.out.println("|     Nhập 'M' để quay lại Menu,                           |");
-            System.out.println("|     hoặc nhập khác để tiếp tục thêm sản phẩm           |");
-            System.out.print("|     ");
+            System.out.println("|     Nhập 'M' để quay lại Menu,                              |");
+            System.out.println("|     hoặc nhập khác để tiếp tục thêm sản phẩm                |");
             String backMenu = Config.scanner().nextLine();
             System.out.println("'-------------------------------------------------------------'\n");
             System.out.println("");
