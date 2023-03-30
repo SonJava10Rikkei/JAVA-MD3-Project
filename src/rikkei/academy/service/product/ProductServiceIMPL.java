@@ -18,11 +18,6 @@ public class ProductServiceIMPL implements IProductService {
         if (findById(product.getIdProduct()) == null) {
             productList.add(product);
         } else {
-//            Product product1 = findById(product.getIdProduct());
-//            product1.setNameProduct(product.getNameProduct());
-//            product1.setBrandProduct(product.getBrandProduct());
-//            product1.setPrice(product.getPrice());
-//            product1.setDescriptions(product.getDescriptions());
             int index = productList.indexOf(findById(product.getIdProduct()));
             productList.set(index, product);
         }
@@ -41,11 +36,7 @@ public class ProductServiceIMPL implements IProductService {
 
     @Override
     public void deleteById(int id) {
-        for (int i = 0; i < productList.size(); i++) {
-            if (productList.get(i).getIdProduct() == id) {
-                productList.remove(i);
-            }
-        }
+        productList.remove(findById(id));
         new Config<Product>().writeToFile(Config.PATH_PRODUCT, productList);
     }
 }
