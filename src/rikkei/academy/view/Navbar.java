@@ -44,7 +44,7 @@ public class Navbar {
                     System.exit(0);
                     break;
                 default:
-                    System.err.println("|     Hãy nhập lại lựa chọn của bạn (0-8):                    |");
+                    System.err.println("|     Hãy nhập lại lựa chọn của bạn (0-7):                    |");
 
             }
         }
