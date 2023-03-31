@@ -1,7 +1,7 @@
 package rikkei.academy.service.product;
 
 import rikkei.academy.config.Config;
-import rikkei.academy.model.Product;
+import rikkei.academy.model.productModel.Product;
 
 import java.util.List;
 

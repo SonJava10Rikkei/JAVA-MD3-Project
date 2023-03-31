@@ -1,4 +1,4 @@
-package rikkei.academy.model;
+package rikkei.academy.model.productModel;
 
 import java.io.Serializable;
 

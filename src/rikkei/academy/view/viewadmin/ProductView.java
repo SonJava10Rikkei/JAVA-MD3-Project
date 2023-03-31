@@ -1,11 +1,11 @@
-package rikkei.academy.view.product;
+package rikkei.academy.view.viewadmin;
 
 import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.Config;
 import rikkei.academy.controller.ProductController;
-import rikkei.academy.model.Product;
+import rikkei.academy.model.productModel.Product;
 import rikkei.academy.validate.ValidateInput;
-import rikkei.academy.view.Navbar;
+import rikkei.academy.view.viewall.Navbar;
 
 import java.text.NumberFormat;
 import java.util.Currency;
@@ -151,6 +151,4 @@ public class ProductView {
             new Navbar();
         }
     }
-
-
 }

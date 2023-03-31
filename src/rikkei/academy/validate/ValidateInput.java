@@ -3,6 +3,7 @@ package rikkei.academy.validate;
 import rikkei.academy.config.Config;
 
 import java.util.InputMismatchException;
+import java.util.regex.Pattern;
 
 public class ValidateInput {
     public static int validateInt() {
@@ -27,5 +28,11 @@ public class ValidateInput {
                 System.err.println("Nhập định dạng phải là số, vui lòng nhập lại: ");
             }
         }
+    }
+
+    public static boolean checkEmail(String email) {
+        String pattern = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+//        return email.matches(pattern);
+        return Pattern.matches(pattern, email);
     }
 }

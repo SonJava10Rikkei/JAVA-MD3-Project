@@ -1,6 +1,6 @@
 package rikkei.academy.controller;
 
-import rikkei.academy.model.Product;
+import rikkei.academy.model.productModel.Product;
 import rikkei.academy.service.product.IProductService;
 import rikkei.academy.service.product.ProductServiceIMPL;
 

@@ -1,9 +1,8 @@
-package rikkei.academy.view;
+package rikkei.academy.view.viewall;
 
-import rikkei.academy.config.ColorConfig;
-import rikkei.academy.config.Config;
 import rikkei.academy.validate.ValidateInput;
-import rikkei.academy.view.product.ProductView;
+import rikkei.academy.config.ColorConfig;
+import rikkei.academy.view.viewadmin.ProductView;
 
 public class Navbar {
     public Navbar() {
