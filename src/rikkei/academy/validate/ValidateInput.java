@@ -30,9 +30,13 @@ public class ValidateInput {
         }
     }
 
-    public static boolean checkEmail(String email) {
+    public static boolean validateEmail(String email) {
         String pattern = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-//        return email.matches(pattern);
         return Pattern.matches(pattern, email);
+    }
+
+    public static boolean validateYesOrNo(String yesOrNo) {
+        String pattern = "^[yn]+$";
+        return Pattern.matches(pattern, yesOrNo);
     }
 }

@@ -11,7 +11,7 @@ public class ProductController {
     IProductService productService = new ProductServiceIMPL();
 
     public List<Product> getListProduct() {
-        return productService.findAll();
+        return productService.getAll();
     }
 
     public void createProduct(Product product) {
@@ -32,7 +32,7 @@ public class ProductController {
 
     public List<Product> searchProductByName(String name) {
         List<Product> result = new ArrayList<>();
-        for (Product product : productService.findAll()) {
+        for (Product product : productService.getAll()) {
             if (product.getNameProduct().equalsIgnoreCase(name)) {
                 result.add(product);
             }

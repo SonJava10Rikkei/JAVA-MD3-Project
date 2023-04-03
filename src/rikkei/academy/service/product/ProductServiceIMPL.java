@@ -10,7 +10,7 @@ public class ProductServiceIMPL implements IProductService {
     List<Product> productList = new Config<Product>().readFormFile(PathConfig.PRODUCT_PATH);
 
     @Override
-    public List<Product> findAll() {
+    public List<Product> getAll() {
         return productList;
     }
 
