@@ -11,23 +11,15 @@ public class Config<T> {
         return scanner;
     }
 
-    public static final String PATH_PRODUCT = "src/rikkei/academy/database/product.txt";
-
 
     public List<T> readFormFile(String path) {
         List<T> tList = new ArrayList<>();
-//        File file = new File(path);
         try {
-//            if(!file.exists()){
-//                file.createNewFile();
-//            }
             FileInputStream fileInputStream = new FileInputStream(path);
-//            if (fileInputStream.available() != 0) {
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
                 tList = (List<T>) objectInputStream.readObject();
                 fileInputStream.close();
                 objectInputStream.close();
-//            }
         } catch (FileNotFoundException f) {
             System.err.println("File Not Found !");
         } catch (IOException i) {

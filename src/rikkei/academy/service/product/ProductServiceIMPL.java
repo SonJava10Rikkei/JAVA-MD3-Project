@@ -1,12 +1,13 @@
 package rikkei.academy.service.product;
 
 import rikkei.academy.config.Config;
+import rikkei.academy.config.PathConfig;
 import rikkei.academy.model.productModel.Product;
 
 import java.util.List;
 
 public class ProductServiceIMPL implements IProductService {
-    List<Product> productList = new Config<Product>().readFormFile(Config.PATH_PRODUCT);
+    List<Product> productList = new Config<Product>().readFormFile(PathConfig.PRODUCT_PATH);
 
     @Override
     public List<Product> findAll() {
@@ -21,7 +22,7 @@ public class ProductServiceIMPL implements IProductService {
             int index = productList.indexOf(findById(product.getIdProduct()));
             productList.set(index, product);
         }
-        new Config<Product>().writeToFile(Config.PATH_PRODUCT, productList);
+        new Config<Product>().writeToFile(PathConfig.PRODUCT_PATH, productList);
     }
 
     @Override
@@ -37,6 +38,6 @@ public class ProductServiceIMPL implements IProductService {
     @Override
     public void deleteById(int id) {
         productList.remove(findById(id));
-        new Config<Product>().writeToFile(Config.PATH_PRODUCT, productList);
+        new Config<Product>().writeToFile(PathConfig.PRODUCT_PATH, productList);
     }
 }
