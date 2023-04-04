@@ -1,5 +1,6 @@
 package rikkei.academy.validate;
 
+import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.Config;
 
 import java.util.InputMismatchException;
@@ -13,7 +14,8 @@ public class ValidateInput {
                 choice = Config.scanner().nextInt();
                 return choice;
             } catch (InputMismatchException e) {
-                System.err.println("|     Nhập định dạng phải là số, vui lòng nhập lại:           |");
+                System.out.print("" + ColorConfig.RED + "|     Nhập định dạng phải là số, vui lòng nhập lại:           |" + ColorConfig.RESET + "\n" +
+                        "|     ");
             }
         }
     }
@@ -25,7 +27,8 @@ public class ValidateInput {
                 choice = Config.scanner().nextDouble();
                 return choice;
             } catch (InputMismatchException e) {
-                System.err.println("Nhập định dạng phải là số, vui lòng nhập lại: ");
+                System.out.print("" + ColorConfig.RED + "|     Nhập định dạng phải là số, vui lòng nhập lại:           |" + ColorConfig.RESET + "\n" +
+                        "|     ");
             }
         }
     }

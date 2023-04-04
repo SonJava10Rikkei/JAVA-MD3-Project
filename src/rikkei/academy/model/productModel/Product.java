@@ -3,53 +3,53 @@ package rikkei.academy.model.productModel;
 import java.io.Serializable;
 
 public class Product implements Serializable {
-    private int idProduct;
-    private String nameProduct;
-    private String brandProduct;
-    private double price;
+    private int productId;
+    private String productName;
+    private String productBrand;
+    private double productPrice;
     private String descriptions;
 
     public Product() {
     }
 
-    public Product(int idProduct, String nameProduct, String brandProduct, double price, String descriptions) {
-        this.idProduct = idProduct;
-        this.nameProduct = nameProduct;
-        this.brandProduct = brandProduct;
-        this.price = price;
+    public Product(int productId, String productName, String productBrand, double productPrice, String descriptions) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productBrand = productBrand;
+        this.productPrice = productPrice;
         this.descriptions = descriptions;
     }
 
-    public int getIdProduct() {
-        return idProduct;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setIdProduct(int idProduct) {
-        this.idProduct = idProduct;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
-    public String getNameProduct() {
-        return nameProduct;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setNameProduct(String nameProduct) {
-        this.nameProduct = nameProduct;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public String getBrandProduct() {
-        return brandProduct;
+    public String getProductBrand() {
+        return productBrand;
     }
 
-    public void setBrandProduct(String brandProduct) {
-        this.brandProduct = brandProduct;
+    public void setProductBrand(String productBrand) {
+        this.productBrand = productBrand;
     }
 
-    public double getPrice() {
-        return price;
+    public double getProductPrice() {
+        return productPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
     }
 
     public String getDescriptions() {
@@ -62,12 +62,13 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "Product{ " +
-                "idProduct = " + idProduct +
-                ", nameProduct = '" + nameProduct + '\'' +
-                ", brandProduct = '" + brandProduct + '\'' +
-                ", price = " + price +
-                ", descriptions = '" + descriptions + '\'' +
+        return "Product{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productBrand='" + productBrand + '\'' +
+                ", productPrice=" + productPrice +
+                ", descriptions='" + descriptions + '\'' +
                 '}';
     }
+
 }

@@ -12,10 +12,10 @@ public class Config<T> {
     }
 
 
-    public List<T> readFormFile(String path) {
+    public List<T> readFormFile(String pathFile) {
         List<T> tList = new ArrayList<>();
         try {
-            FileInputStream fileInputStream = new FileInputStream(path);
+            FileInputStream fileInputStream = new FileInputStream(pathFile);
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
                 tList = (List<T>) objectInputStream.readObject();
                 fileInputStream.close();

@@ -1,8 +1,8 @@
 package rikkei.academy.controller;
 
 import rikkei.academy.model.productModel.Product;
-import rikkei.academy.service.product.IProductService;
-import rikkei.academy.service.product.ProductServiceIMPL;
+import rikkei.academy.service.productService.IProductService;
+import rikkei.academy.service.productService.ProductServiceIMPL;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class ProductController {
     IProductService productService = new ProductServiceIMPL();
 
     public List<Product> getListProduct() {
-        return productService.getAll();
+        return productService.findAll();
     }
 
     public void createProduct(Product product) {
@@ -32,8 +32,8 @@ public class ProductController {
 
     public List<Product> searchProductByName(String name) {
         List<Product> result = new ArrayList<>();
-        for (Product product : productService.getAll()) {
-            if (product.getNameProduct().equalsIgnoreCase(name)) {
+        for (Product product : productService.findAll()) {
+            if (product.getProductName().equalsIgnoreCase(name)) {
                 result.add(product);
             }
         }

@@ -1,9 +1,8 @@
-package rikkei.academy.view.viewAdmin.menuAdmin;
+package rikkei.academy.view.viewAdmin.productView;
 
 import rikkei.academy.config.ColorConfig;
 import rikkei.academy.validate.ValidateInput;
 import rikkei.academy.view.menuView.CustomStringMenuViewAd;
-import rikkei.academy.view.viewAdmin.productView.ProductViewCRUD;
 
 public class ProductMenu {
     public ProductMenu() {
@@ -13,8 +12,9 @@ public class ProductMenu {
             System.out.println(CustomStringMenuViewAd.ProductMenu);
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
+            System.out.print("|     ");
             int chooseMenu = ValidateInput.validateInt();
-            System.out.println("'-------------------------------------------------------------'\n");
+            System.out.println("'-------------------------------------------------------------'");
             switch (chooseMenu) {
                 case 1:
                     new ProductViewCRUD().showListProduct();
@@ -36,11 +36,12 @@ public class ProductMenu {
                     System.exit(0);
                     break;
                 default:
-                    System.err.println("|     Hãy nhập lại lựa chọn của bạn (0-7):                    |");
-
+                    System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0-7)!               |" + ColorConfig.RESET + "\n" +
+                            "'-------------------------------------------------------------'\n");
             }
         }
     }
+
     public static void main(String[] args) {
         new ProductMenu();
     }
