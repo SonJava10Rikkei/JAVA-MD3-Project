@@ -1,4 +1,4 @@
-package rikkei.academy.view.CustomString;
+package rikkei.academy.config.customString;
 
 public class CustomStringMainMenu {
     public static String welcomeMenu =

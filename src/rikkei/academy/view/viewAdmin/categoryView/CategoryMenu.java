@@ -1,8 +1,8 @@
 package rikkei.academy.view.viewAdmin.categoryView;
 
 import rikkei.academy.config.ColorConfig;
-import rikkei.academy.validate.ValidateInput;
-import rikkei.academy.view.CustomString.CustomStringMenuViewAd;
+import rikkei.academy.config.customString.CustomStringMenuViewAd;
+import rikkei.academy.config.validate.ValidateInput;
 
 public class CategoryMenu {
     public CategoryMenu() {
@@ -24,7 +24,7 @@ public class CategoryMenu {
                     new CategoryManage().updateCategory();
                     break;
                 case 4:
-//                    new ProductManage().deleteCategory();
+                    new CategoryManage().deleteCategory();
                     break;
                 case 0:
                     System.err.println("     Bạn đã thoát chương trình!     ");

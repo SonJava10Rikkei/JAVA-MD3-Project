@@ -1,8 +1,8 @@
 package rikkei.academy.view.viewAll;
 
 import rikkei.academy.config.ColorConfig;
-import rikkei.academy.validate.ValidateInput;
-import rikkei.academy.view.CustomString.CustomStringMainMenu;
+import rikkei.academy.config.validate.ValidateInput;
+import rikkei.academy.config.customString.CustomStringMainMenu;
 
 public class HomePageMenu {
 

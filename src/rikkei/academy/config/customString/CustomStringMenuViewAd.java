@@ -1,10 +1,12 @@
-package rikkei.academy.view.CustomString;
+package rikkei.academy.config.customString;
+
+import rikkei.academy.config.ColorConfig;
 
 public class CustomStringMenuViewAd {
 
     public static String ProductMenu =
             "                                              .————————————————————————————————————————————————————————.\n" +
-                    "                                              ║                     MENU SẢN PHẨM                      ║\n" +
+                    "                                              ║                     " + ColorConfig.BLUE + "MENU SẢN PHẨM" + ColorConfig.RESET + "                      ║\n" +
                     "                                              ║--------------------------------------------------------║\n" +
                     "                                              ║             1. Hiển thị danh sách sản phẩm             ║\n" +
                     "                                              ║             2. Thêm mới sản phẩm                       ║\n" +
@@ -14,7 +16,7 @@ public class CustomStringMenuViewAd {
                     "                                              '————————————————————————————————————————————————————————'\n";
     public static String CategoryMenu =
             "                                              .————————————————————————————————————————————————————————.\n" +
-                    "                                              ║                     MENU CATEGORY                      ║\n" +
+                    "                                              ║                     " + ColorConfig.BLUE + "MENU CATEGORY" + ColorConfig.RESET + "                      ║\n" +
                     "                                              ║--------------------------------------------------------║\n" +
                     "                                              ║        1. Hiển thị danh sách danh mục sản phẩm         ║\n" +
                     "                                              ║        2. Thêm mới danh mục sản phẩm                   ║\n" +

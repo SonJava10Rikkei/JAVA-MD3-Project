@@ -1,4 +1,4 @@
-package rikkei.academy.validate;
+package rikkei.academy.config.validate;
 
 import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.Config;

@@ -1,8 +1,8 @@
 package rikkei.academy.view.viewAdmin.productView;
 
 import rikkei.academy.config.ColorConfig;
-import rikkei.academy.validate.ValidateInput;
-import rikkei.academy.view.CustomString.CustomStringMenuViewAd;
+import rikkei.academy.config.validate.ValidateInput;
+import rikkei.academy.config.customString.CustomStringMenuViewAd;
 
 public class ProductMenu {
     public ProductMenu() {

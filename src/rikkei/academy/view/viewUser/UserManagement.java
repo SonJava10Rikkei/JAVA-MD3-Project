@@ -1,6 +1,6 @@
 package rikkei.academy.view.viewUser;
 
-import rikkei.academy.view.CustomString.CustomStringMenuViewUser;
+import rikkei.academy.config.customString.CustomStringMenuViewUser;
 
 public class UserManagement {
     public static void displayMenu(){
