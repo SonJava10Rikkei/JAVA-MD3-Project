@@ -5,13 +5,13 @@ import rikkei.academy.config.Config;
 import rikkei.academy.controller.ProductController;
 import rikkei.academy.model.productModel.Product;
 import rikkei.academy.validate.ValidateInput;
-import rikkei.academy.view.menuView.CustomString;
+import rikkei.academy.view.CustomString.CustomString;
 
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class ProductViewCRUD {
+public class ProductManage {
 
     ProductController productController = new ProductController();
     List<Product> listProduct = productController.getListProduct();

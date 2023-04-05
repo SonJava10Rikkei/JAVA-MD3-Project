@@ -2,7 +2,7 @@ package rikkei.academy.model.productModel;
 
 import java.io.Serializable;
 
-public class Product implements Serializable {
+public class Product implements Serializable,Comparable<Product> {
     private int productId;
     private String productName;
     private String productBrand;
@@ -71,4 +71,8 @@ public class Product implements Serializable {
                 '}';
     }
 
+    @Override
+    public int compareTo(Product o) {
+        return 0;
+    }
 }

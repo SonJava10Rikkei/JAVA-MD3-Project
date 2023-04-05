@@ -1,9 +1,9 @@
 package rikkei.academy.view.viewUser;
 
-import rikkei.academy.view.menuView.CostomStringMenuViewUser;
+import rikkei.academy.view.CustomString.CustomStringMenuViewUser;
 
 public class UserManagement {
     public static void displayMenu(){
-        System.out.println(CostomStringMenuViewUser.MenuViewUser);
+        System.out.println(CustomStringMenuViewUser.MenuViewUser);
     }
 }

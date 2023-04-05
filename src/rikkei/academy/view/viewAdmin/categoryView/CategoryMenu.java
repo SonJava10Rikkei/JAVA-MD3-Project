@@ -1,13 +1,13 @@
-package rikkei.academy.view.viewAdmin.productView;
+package rikkei.academy.view.viewAdmin.categoryView;
 
 import rikkei.academy.config.ColorConfig;
 import rikkei.academy.validate.ValidateInput;
 import rikkei.academy.view.CustomString.CustomStringMenuViewAd;
 
-public class ProductMenu {
-    public ProductMenu() {
+public class CategoryMenu {
+    public CategoryMenu() {
         while (true) {
-            System.out.println(CustomStringMenuViewAd.ProductMenu);
+            System.out.println(CustomStringMenuViewAd.CategoryMenu);
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
             System.out.print("|     ");
@@ -15,20 +15,17 @@ public class ProductMenu {
             System.out.println("'-------------------------------------------------------------'");
             switch (chooseMenu) {
                 case 1:
-                    new ProductManage().showListProduct();
+                    new CategoryManage().showListCategory();
                     break;
                 case 2:
-                    new ProductManage().formCreateProduct();
+                    new CategoryManage().formCreateCategory();
                     break;
                 case 3:
-                    new ProductManage().updateProduct();
+                    new CategoryManage().updateCategory();
                     break;
                 case 4:
-                    new ProductManage().deleteCategory();
+//                    new ProductManage().deleteCategory();
                     break;
-//                case 5:
-//                    new ProductManage().searchProductByName();
-//                    break;
                 case 0:
                     System.err.println("     Bạn đã thoát chương trình!     ");
                     System.exit(0);
@@ -41,6 +38,6 @@ public class ProductMenu {
     }
 
     public static void main(String[] args) {
-        new ProductMenu();
+        new CategoryMenu();
     }
 }

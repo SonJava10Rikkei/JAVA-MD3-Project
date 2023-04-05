@@ -42,4 +42,7 @@ public class ValidateInput {
         String pattern = "^[yn]+$";
         return Pattern.matches(pattern, yesOrNo);
     }
+    public static boolean isNullOrWhiteSpace(String input) {
+        return input == null || input.trim().isEmpty();
+    }
 }
