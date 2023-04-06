@@ -16,7 +16,7 @@ public class CustomStringMenuViewAd {
                     "                                              '————————————————————————————————————————————————————————'\n";
     public static String CategoryMenu =
             "                                              .————————————————————————————————————————————————————————.\n" +
-                    "                                              ║                     " + ColorConfig.BLUE + "MENU CATEGORY" + ColorConfig.RESET + "                      ║\n" +
+                    "                                              ║                " + ColorConfig.BLUE + "MENU DANH MỤC SẢN PHẨM" + ColorConfig.RESET + "                  ║\n" +
                     "                                              ║--------------------------------------------------------║\n" +
                     "                                              ║        1. Hiển thị danh sách danh mục sản phẩm         ║\n" +
                     "                                              ║        2. Thêm mới danh mục sản phẩm                   ║\n" +

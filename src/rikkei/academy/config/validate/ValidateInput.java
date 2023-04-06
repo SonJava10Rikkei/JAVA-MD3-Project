@@ -38,11 +38,8 @@ public class ValidateInput {
         return Pattern.matches(pattern, email);
     }
 
-    public static boolean validateYesOrNo(String yesOrNo) {
-        String pattern = "^[yn]+$";
-        return Pattern.matches(pattern, yesOrNo);
-    }
-    public static boolean isNullOrWhiteSpace(String input) {
+     public static boolean isNullOrWhiteSpace(String input) {
+        
         return input == null || input.trim().isEmpty();
     }
 }

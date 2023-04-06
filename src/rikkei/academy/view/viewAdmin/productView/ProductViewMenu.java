@@ -4,8 +4,8 @@ import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.validate.ValidateInput;
 import rikkei.academy.config.customString.CustomStringMenuViewAd;
 
-public class ProductMenu {
-    public ProductMenu() {
+public class ProductViewMenu {
+    public ProductViewMenu() {
         while (true) {
             System.out.println(CustomStringMenuViewAd.ProductMenu);
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
@@ -15,20 +15,17 @@ public class ProductMenu {
             System.out.println("'-------------------------------------------------------------'");
             switch (chooseMenu) {
                 case 1:
-                    new ProductManage().showListProduct();
+                    new ProductViewManage().showListProduct();
                     break;
                 case 2:
-                    new ProductManage().formCreateProduct();
+                    new ProductViewManage().formCreateProduct();
                     break;
                 case 3:
-                    new ProductManage().updateProduct();
+                    new ProductViewManage().updateProduct();
                     break;
                 case 4:
-                    new ProductManage().deleteCategory();
+                    new ProductViewManage().deleteCategory();
                     break;
-//                case 5:
-//                    new ProductManage().searchProductByName();
-//                    break;
                 case 0:
                     System.err.println("     Bạn đã thoát chương trình!     ");
                     System.exit(0);
@@ -41,6 +38,6 @@ public class ProductMenu {
     }
 
     public static void main(String[] args) {
-        new ProductMenu();
+        new ProductViewMenu();
     }
 }

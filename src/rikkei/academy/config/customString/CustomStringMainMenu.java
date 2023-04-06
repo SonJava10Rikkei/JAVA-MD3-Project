@@ -3,7 +3,7 @@ package rikkei.academy.config.customString;
 public class CustomStringMainMenu {
     public static String welcomeMenu =
             "                                              .————————————————————————————————————————————————————————.\n" +
-                    "                                              ║                    WELCOME SHOPMEN !                   ║\n" +
+                    "                                              ║                  TRANG CHỦ SHOPMEN !                   ║\n" +
                     "                                              ║--------------------------------------------------------║\n" +
                     "                                              ║                  1. Đăng ký                            ║\n" +
                     "                                              ║                  2. Đăng nhập                          ║\n" +

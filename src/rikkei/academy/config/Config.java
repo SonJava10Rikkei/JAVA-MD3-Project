@@ -23,7 +23,7 @@ public class Config<T> {
         } catch (FileNotFoundException f) {
             System.err.println("File Not Found !");
         } catch (IOException i) {
-            System.err.println("IOE Exception !");
+            System.err.println("IOE Exception (Danh sách không có dữ liệu)!");
         } catch (ClassNotFoundException c) {
             System.err.println("Class Not Found !");
         }
@@ -44,5 +44,4 @@ public class Config<T> {
             System.err.println("IOE Exception !");
         }
     }
-
 }

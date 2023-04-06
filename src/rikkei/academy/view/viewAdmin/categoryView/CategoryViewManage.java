@@ -6,11 +6,10 @@ import rikkei.academy.config.customString.CustomString;
 import rikkei.academy.config.validate.ValidateInput;
 import rikkei.academy.controller.CategoryController;
 import rikkei.academy.model.productModel.Category;
-import rikkei.academy.view.viewAdmin.productView.ProductMenu;
 
 import java.util.List;
 
-public class CategoryManage {
+public class CategoryViewManage {
     CategoryController categoryController = new CategoryController();
     List<Category> listCategory = categoryController.getListCategory();
 
@@ -18,16 +17,20 @@ public class CategoryManage {
     public void showListCategory() {
         System.out.println(CustomString.ListCategoryView);
         for (int i = 0; i < listCategory.size(); i++) {
-            System.out.printf("                                                  ║   %-2d   |   %-33s ║\n", listCategory.get(i).getId(), listCategory.get(i).getCategory());
+            if (listCategory.size() != 0) {
+                System.out.printf("                                                  ║   %-2d   |   %-33s ║\n", listCategory.get(i).getId(), listCategory.get(i).getNameCategory());
+            } else {
+                System.err.println("|     Danh mục hiện đang trống hãy thêm danh mục mới!         |");
+            }
         }
-        System.out.println("                                                  '——————————————————————————————————————————————'");
-        System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
-        System.out.println("|     Nhập phím bất kỳ để quay lại Menu :                     |");
-        System.out.print("|     ");
+        System.out.print("                                                  '——————————————————————————————————————————————'\n" +
+                ".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.\n" +
+                "|     Nhập phím bất kỳ để quay lại Menu :                     |\n" +
+                "|     ");
         String backMenu = Config.scanner().nextLine();
         System.out.println("'-------------------------------------------------------------'\n");
         if (backMenu.equalsIgnoreCase("m")) {
-            new CategoryMenu();
+            new CategoryViewMenu();
         }
     }
 
@@ -40,35 +43,19 @@ public class CategoryManage {
             } else {
                 id = listCategory.get(listCategory.size() - 1).getId() + 1;
             }
-            System.out.println("");
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Nhập loại sản phẩm mới là:                              |");
             System.out.print("|     ");
-            while (true) {
-                String name = Config.scanner().nextLine();
-                if (ValidateInput.isNullOrWhiteSpace(name)) {
-                    System.out.println("|     " + ColorConfig.RED + "Chuỗi nhập không được bỏ trống! Hãy nhập lại:" + ColorConfig.RESET + "           |");
-                    System.out.print("|     ");
-
-                } else {
-                    System.out.println("|     Chuỗi hợp lệ!                                           |");
-                    Category newCategory = new Category(id, name);
-                    categoryController.createCategory(newCategory);
-                    break;
-                }
-            }
+            inputCheckNull(id);
             System.out.println("|     " + ColorConfig.GREEN + "Đã thêm thành công !!!" + ColorConfig.RESET + "                                  |");
             System.out.println("'-------------------------------------------------------------'\n");
-            System.out.println("");
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Nhập phím bất kỳ để tiếp tục thêm danh mục sản phẩm,    |");
             System.out.println("|     hoặc nhập 'M' để quay lại Menu:                         |");
-            System.out.print("|     ");
             String backMenu = Config.scanner().nextLine();
             System.out.println("'-------------------------------------------------------------'\n");
-            System.out.println("");
             if (backMenu.equalsIgnoreCase("m")) {
-                new CategoryMenu();
+                new CategoryViewMenu();
             }
         }
     }
@@ -84,7 +71,7 @@ public class CategoryManage {
                 if (id == listCategory.get(i).getId()) {
                     System.out.println("|     Danh mục sản phẩm bạn muốn chỉnh sửa là:                |");
                     System.out.println(CustomString.ListCategoryView);
-                    System.out.printf("                                                  ║   %-2d   |   %-33s ║\n", listCategory.get(i).getId(), listCategory.get(i).getCategory());
+                    System.out.printf("                                                  ║   %-2d   |   %-33s ║\n", listCategory.get(i).getId(), listCategory.get(i).getNameCategory());
                     System.out.println("                                                  '——————————————————————————————————————————————'\n");
                 }
             }
@@ -93,11 +80,9 @@ public class CategoryManage {
                 updateCategory();
             } else {
                 System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
-                System.out.println("|     Nhập tên mới của danh mục sản phẩm:                     |\n");
+                System.out.println("|     Nhập tên mới của danh mục sản phẩm:                     |");
                 System.out.print("|     ");
-                String name = Config.scanner().nextLine();
-                Category newCategory = new Category(id, name);
-                categoryController.editCategory(id, newCategory);
+                inputCheckNull(id);
                 System.out.println("|" + ColorConfig.GREEN + "     Đã sửa thành công !!!                                   " + ColorConfig.RESET + "|");
             }
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
@@ -107,10 +92,27 @@ public class CategoryManage {
             String backMenu = Config.scanner().nextLine();
             System.out.println("'-------------------------------------------------------------'\n");
             if (backMenu.equalsIgnoreCase("m")) {
-                new CategoryMenu();
+                new CategoryViewMenu();
             }
         }
     }
+
+    private void inputCheckNull(int id) {
+        while (true) {
+            String name = Config.scanner().nextLine();
+            if (ValidateInput.isNullOrWhiteSpace(name)) {
+                System.out.println("|     " + ColorConfig.RED + "Chuỗi nhập không được bỏ trống! Hãy nhập lại:" + ColorConfig.RESET + "           |");
+                System.out.print("|     ");
+
+            } else {
+                System.out.println("|     Chuỗi hợp lệ!                                           |");
+                Category newCategory = new Category(id, name);
+                categoryController.createCategory(newCategory);
+                break;
+            }
+        }
+    }
+
     public void deleteCategory() {
         while (true) {
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
@@ -125,7 +127,7 @@ public class CategoryManage {
                     if (targetId == listCategory.get(i).getId()) {
                         System.out.println("|     Danh mục sản phẩm bạn muốn chỉnh sửa là:                |\n");
                         System.out.println(CustomString.ListCategoryView);
-                        System.out.printf("                                                  ║   %-2d   |   %-33s ║\n", listCategory.get(i).getId(), listCategory.get(i).getCategory());
+                        System.out.printf("                                                  ║   %-2d   |   %-33s ║\n", listCategory.get(i).getId(), listCategory.get(i).getNameCategory());
                         System.out.println("                                                  '——————————————————————————————————————————————'\n");
                     }
                 }
@@ -153,7 +155,7 @@ public class CategoryManage {
             String backMenu = Config.scanner().nextLine();
             System.out.println("'-------------------------------------------------------------'\n");
             if (backMenu.equalsIgnoreCase("m")) {
-                new CategoryMenu();
+                new CategoryViewMenu();
             }
         }
     }

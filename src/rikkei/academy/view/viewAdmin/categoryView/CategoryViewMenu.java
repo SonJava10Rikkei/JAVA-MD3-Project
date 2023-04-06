@@ -4,8 +4,8 @@ import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.customString.CustomStringMenuViewAd;
 import rikkei.academy.config.validate.ValidateInput;
 
-public class CategoryMenu {
-    public CategoryMenu() {
+public class CategoryViewMenu {
+    public CategoryViewMenu() {
         while (true) {
             System.out.println(CustomStringMenuViewAd.CategoryMenu);
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
@@ -15,16 +15,16 @@ public class CategoryMenu {
             System.out.println("'-------------------------------------------------------------'");
             switch (chooseMenu) {
                 case 1:
-                    new CategoryManage().showListCategory();
+                    new CategoryViewManage().showListCategory();
                     break;
                 case 2:
-                    new CategoryManage().formCreateCategory();
+                    new CategoryViewManage().formCreateCategory();
                     break;
                 case 3:
-                    new CategoryManage().updateCategory();
+                    new CategoryViewManage().updateCategory();
                     break;
                 case 4:
-                    new CategoryManage().deleteCategory();
+                    new CategoryViewManage().deleteCategory();
                     break;
                 case 0:
                     System.err.println("     Bạn đã thoát chương trình!     ");
@@ -38,6 +38,6 @@ public class CategoryMenu {
     }
 
     public static void main(String[] args) {
-        new CategoryMenu();
+        new CategoryViewMenu();
     }
 }

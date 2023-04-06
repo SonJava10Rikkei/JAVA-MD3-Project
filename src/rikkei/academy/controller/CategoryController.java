@@ -27,6 +27,6 @@ public class CategoryController {
 
     public void editCategory(int id, Category category) {
         Category category1 = categoryService.findById(id);
-        category1.setCategory(category.getCategory());
+        category1.setNameCategory(category.getNameCategory());
     }
 }

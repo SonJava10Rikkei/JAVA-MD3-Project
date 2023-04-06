@@ -6,14 +6,14 @@ public class Category implements Serializable {
 static final long serriaVersionUID = 1L;
 private int id;
 
-private String category;
+private String nameCategory;
 
     public Category() {
     }
 
-    public Category(int id, String category) {
+    public Category(int id, String nameCategory) {
         this.id = id;
-        this.category = category;
+        this.nameCategory = nameCategory;
     }
 
     public int getId() {
@@ -24,19 +24,19 @@ private String category;
         this.id = id;
     }
 
-    public String getCategory() {
-        return category;
+    public String getNameCategory() {
+        return nameCategory;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setNameCategory(String category) {
+        this.nameCategory = category;
     }
 
     @Override
     public String toString() {
         return "Category{" +
                 "id=" + id +
-                ", category='" + category + '\'' +
+                ", nameCategory='" + nameCategory + '\'' +
                 '}';
     }
 }
