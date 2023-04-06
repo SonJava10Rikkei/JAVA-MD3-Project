@@ -1,4 +1,4 @@
-package rikkei.academy.view.viewUser;
+package rikkei.academy.view.viewAdmin.userManage;
 
 import rikkei.academy.config.validate.InputConfig;
 import rikkei.academy.config.validate.ValidateInput;
@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class ViewUserManage {
     UserController userController = new UserController();
-    User currenUser = userController.grtCurrenUser();
+    User currenUser = userController.getCurrenUser();
     List<User> userList = userController.getUserList();
     public ViewUserManage() {
         System.out.println("***************USER MANAGE********************");
