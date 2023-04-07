@@ -3,7 +3,7 @@ package rikkei.academy.view.viewAdmin.categoryView;
 import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.Config;
 import rikkei.academy.config.customString.CustomString;
-import rikkei.academy.config.validate.ValidateInput;
+import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.controller.CategoryController;
 import rikkei.academy.model.productModel.Category;
 
@@ -66,7 +66,7 @@ public class CategoryViewManage {
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Nhập ID của danh mục sản phẩm bạn muốn sửa:             |");
             System.out.print("|     ");
-            int id = ValidateInput.validateInt();
+            int id = ValidateInputCustom.validateInt();
             for (int i = 0; i < listCategory.size(); i++) {
                 if (id == listCategory.get(i).getId()) {
                     System.out.println("|     Danh mục sản phẩm bạn muốn chỉnh sửa là:                |");
@@ -100,7 +100,7 @@ public class CategoryViewManage {
     private void inputCheckNull(int id) {
         while (true) {
             String name = Config.scanner().nextLine();
-            if (ValidateInput.isNullOrWhiteSpace(name)) {
+            if (ValidateInputCustom.isNullOrWhiteSpace(name)) {
                 System.out.println("|     " + ColorConfig.RED + "Chuỗi nhập không được bỏ trống! Hãy nhập lại:" + ColorConfig.RESET + "           |");
                 System.out.print("|     ");
 
@@ -119,7 +119,7 @@ public class CategoryViewManage {
 
             System.out.println("|     Nhập ID của sản phẩm bạn muốn xóa:                      |");
             System.out.print("|     ");
-            int targetId = ValidateInput.validateInt();
+            int targetId = ValidateInputCustom.validateInt();
             if (categoryController.detailCategory(targetId) == null) {
                 System.err.println("|     ID không có trong danh sách sản phẩm hãy nhập lại:      |");
             } else {

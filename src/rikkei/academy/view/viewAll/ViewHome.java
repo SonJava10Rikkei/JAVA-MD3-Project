@@ -1,6 +1,6 @@
 package rikkei.academy.view.viewAll;
 
-import rikkei.academy.config.validate.ValidateInput;
+import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.controller.UserController;
 import rikkei.academy.model.User;
 import rikkei.academy.model.role.RoleName;
@@ -16,25 +16,24 @@ public class ViewHome {
 
     RoleName roleName = new ArrayList<>(currenUser.getRoles()).get(0).getRoleName();
 
-    public ViewHome(){
-       switch (roleName){
-           case ADMIN:
-               menuAdmin();
-               break;
-           case PM:
-               menuPm();
-               break;
-           case USER:
-               menuUser();
-               break;
-
-
-       }
+    public ViewHome() {
+        switch (roleName) {
+            case ADMIN:
+                menuAdmin();
+                break;
+            case PM:
+                menuPm();
+                break;
+            default:
+//                USER
+                menuUser();
+                break;
+        }
     }
 
     private void menuPm() {
         System.out.println("*****************WELCOME*************************");
-        System.out.println("Hello: " + roleName + " : " + currenUser.getName() );
+        System.out.println("Hello: " + roleName + " : " + currenUser.getName());
         System.out.println("1: Log Out");
         System.out.println("2: User manage");
         System.out.println("3: Show list user");
@@ -43,8 +42,8 @@ public class ViewHome {
         System.out.println("6: Series Video manage");
 
 
-        int choice = ValidateInput.validateInt();
-        switch (choice){
+        int choice = ValidateInputCustom.validateInt();
+        switch (choice) {
             case 1:
                 userController.logOut();
 //                new ViewMainMenu().menu();
@@ -72,9 +71,9 @@ public class ViewHome {
     }
 
 
-    public void menuUser(){
+    public void menuUser() {
         System.out.println("*****************WELCOME*************************");
-        System.out.println("Hello: "  + currenUser.getName());
+        System.out.println("Hello: " + currenUser.getName());
         System.out.println("1: Log Out");
         System.out.println("2: Your Profile");
         System.out.println("3: Change password");
@@ -90,13 +89,13 @@ public class ViewHome {
         System.out.println("13: Top Video by NSX");
         System.out.println("14: Top Like Video");
 
-        int choice = ValidateInput.validateInt();
+        int choice = ValidateInputCustom.validateInt();
 
-        switch (choice){
+        switch (choice) {
             case 1:
                 userController.logOut();
 //                new ViewMainMenu().menu();
-               return;
+                return;
             case 2:
 //                new ViewChangeProFile().menuProFile();
                 break;
@@ -143,10 +142,9 @@ public class ViewHome {
     }
 
 
-
-    public void menuAdmin(){
+    public void menuAdmin() {
         System.out.println("*****************WELCOME*************************");
-        System.out.println("Hello: " + roleName + " : " + currenUser.getName() );
+        System.out.println("Hello: " + roleName + " : " + currenUser.getName());
         System.out.println("1: Log Out");
         System.out.println("2: User manage");
         System.out.println("3: Show list user");
@@ -155,10 +153,9 @@ public class ViewHome {
         System.out.println("6: Series Video manage");
 
 
+        int choice = ValidateInputCustom.validateInt();
 
-        int choice = ValidateInput.validateInt();
-
-        switch (choice){
+        switch (choice) {
             case 1:
                 userController.logOut();
 //                new ViewMainMenu().menu();
@@ -183,10 +180,11 @@ public class ViewHome {
         }
         menuAdmin();
     }
+
     private void formShowListUser() {
-        System.out.printf("%-15s%-15s%-15s%-25s%-15s%s%n","id","name", "Username","email", "password","Role");
-        for (User user: userList) {
-            System.out.printf("%-15s%-15s%-15s%-25s%-15s%s%n",user.getId(),user.getName(), user.getUsername(), user.getEmail(), user.getPassword(),user.getRoles() );
+        System.out.printf("%-15s%-15s%-15s%-25s%-15s%s%n", "id", "name", "Username", "email", "password", "Role");
+        for (User user : userList) {
+            System.out.printf("%-15s%-15s%-15s%-25s%-15s%s%n", user.getId(), user.getName(), user.getUsername(), user.getEmail(), user.getPassword(), user.getRoles());
         }
     }
 

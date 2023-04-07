@@ -1,7 +1,7 @@
 package rikkei.academy.view.viewAdmin.userManage;
 
-import rikkei.academy.config.validate.InputConfig;
-import rikkei.academy.config.validate.ValidateInput;
+import rikkei.academy.config.Config;
+import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.controller.UserController;
 import rikkei.academy.model.User;
 import rikkei.academy.model.role.RoleName;
@@ -23,7 +23,7 @@ public class ViewUserManage {
         System.out.println("4: Edit Profile");
         System.out.println("5: Change password");
         System.out.println("6: back");
-        int choice = ValidateInput.validateInt();
+        int choice = ValidateInputCustom.validateInt();
         switch (choice) {
             case 1:
                 this.formChangeRole();
@@ -68,13 +68,13 @@ public class ViewUserManage {
             System.out.println(System.out.printf("%-5d%-15s%s%n", user.getId(), user.getUsername(), user.getListRole()));
         });
         System.out.println("Enter user id to edit role");
-        int id = ValidateInput.validateInt();
+        int id = ValidateInputCustom.validateInt();
         if (!userList.contains(userController.findById(id))) {
             System.out.println("ID not found");
             return;
         }
         System.out.println("Enter Role");
-        String role = InputConfig.getString();
+        String role = Config.InputConfig.getString();
         Set<String> strRoles = new HashSet<>();
         strRoles.add(role);
         userController.setRole(id, strRoles);
@@ -107,7 +107,7 @@ public class ViewUserManage {
 
         System.out.println("Enter user id to block");
 
-        int id = ValidateInput.validateInt();
+        int id = ValidateInputCustom.validateInt();
 
         if (!userList.contains(userController.findById(id))) {
             System.out.println("ID not found");
@@ -147,7 +147,7 @@ public class ViewUserManage {
 
         System.out.println("Enter user id to delete");
 
-        int id = ValidateInput.validateInt();
+        int id = ValidateInputCustom.validateInt();
 
         if (!userList.contains(userController.findById(id))) {
             System.out.println("ID not found");

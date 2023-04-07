@@ -4,9 +4,10 @@ import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.Config;
 
 import java.util.InputMismatchException;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class ValidateInput {
+public class ValidateInputCustom {
     public static int validateInt() {
         int choice = 0;
         while (true) {
@@ -38,8 +39,22 @@ public class ValidateInput {
         return Pattern.matches(pattern, email);
     }
 
-     public static boolean isNullOrWhiteSpace(String input) {
-        
+    public static boolean isNullOrWhiteSpace(String input) {
         return input == null || input.trim().isEmpty();
     }
+
+    public static String getString() {
+        String result = getInput().trim();
+        if (result.equals("")) {
+            System.out.print("|     " + ColorConfig.RED + "Chuỗi nhập không được bỏ trống! Hãy nhập lại:" + ColorConfig.RESET + "           |\n" +
+                    "|     ");
+            return getString();
+        }
+        return result;
+    }
+
+    private static String getInput() {
+        return new Scanner(System.in).nextLine();
+    }
+
 }

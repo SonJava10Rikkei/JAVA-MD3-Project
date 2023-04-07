@@ -1,12 +1,12 @@
 package rikkei.academy.dto.response;
 
-public class ResponseMessenger {
+public class ResponseMessage {
     private String messenger;
 
-    public ResponseMessenger() {
+    public ResponseMessage() {
     }
 
-    public ResponseMessenger(String messenger) {
+    public ResponseMessage(String messenger) {
         this.messenger = messenger;
     }
 

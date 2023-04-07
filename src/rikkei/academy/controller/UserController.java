@@ -3,7 +3,7 @@ package rikkei.academy.controller;
 import rikkei.academy.config.Config;
 import rikkei.academy.config.PathConfig;
 import rikkei.academy.dto.request.SignUpDTO;
-import rikkei.academy.dto.response.ResponseMessenger;
+import rikkei.academy.dto.response.ResponseMessage;
 import rikkei.academy.model.User;
 import rikkei.academy.model.role.Role;
 import rikkei.academy.model.role.RoleName;
@@ -25,14 +25,14 @@ public class UserController {
         return userService.findAll();
     }
 
-    public ResponseMessenger register(SignUpDTO sinUpDTO) {
-        if (userService.existedByUserName(sinUpDTO.getUsername())) {
-            return new ResponseMessenger("Username_Existed!!!");
+    public ResponseMessage register(SignUpDTO signUpDTO) {
+        if (userService.existedByUserName(signUpDTO.getUsername())) {
+            return new ResponseMessage("Username_Existed!!!");
         }
-        if (userService.existedByMail(sinUpDTO.getEmail())) {
-            return new ResponseMessenger("Email_Existed!!!");
+        if (userService.existedByMail(signUpDTO.getEmail())) {
+            return new ResponseMessage("Email_Existed!!!");
         }
-        Set<String> strRoles = sinUpDTO.getRoles();
+        Set<String> strRoles = signUpDTO.getRoles();
         Set<Role> roles = new HashSet<>();
         for (String role : strRoles) {
             switch (role) {
@@ -42,38 +42,39 @@ public class UserController {
                 case "admin":
                     roles.add(roleService.findByRoleName(RoleName.ADMIN));
                     break;
-                case "user":
-                    roles.add(roleService.findByRoleName(RoleName.USER));
-                    break;
                 default:
-                    return new ResponseMessenger("Invalid role");
+//                    "user":
+                    roles.add(roleService.findByRoleName(RoleName.USER));
+//                    break;
+//                default:
+//                    return new ResponseMessage("Invalid role");
 
             }
         }
         User user = new User(
-                sinUpDTO.getId(),
-                sinUpDTO.getName(),
-                sinUpDTO.getUsername(),
-                sinUpDTO.getEmail(),
-                sinUpDTO.getPassword(),
+                signUpDTO.getId(),
+                signUpDTO.getName(),
+                signUpDTO.getUsername(),
+                signUpDTO.getEmail(),
+                signUpDTO.getPassword(),
                 roles
         );
         userService.save(user);
-        getUserList();
-        return new ResponseMessenger("Create success");
+//        System.out.println(getUserList());
+        return new ResponseMessage("Create success");
 
     }
 
-    public ResponseMessenger login(SignUpDTO sinUpDTO) {
-        if (userService.checkLogin(sinUpDTO.getUsername(), sinUpDTO.getPassword())) {
-            User user = userService.findByUserName(sinUpDTO.getUsername());
+    public ResponseMessage login(SignUpDTO signUpDTO) {
+        if (userService.checkLogin(signUpDTO.getUsername(), signUpDTO.getPassword())) {
+            User user = userService.findByUserName(signUpDTO.getUsername());
 
             List<User> userLogin = new ArrayList<>();
             userLogin.add(user);
             new Config<User>().writeToFile(PathConfig.PATH_USER_PRINCIPAL, userLogin);
-            return new ResponseMessenger("Login-Success");
+            return new ResponseMessage("Login-Success");
         } else {
-            return new ResponseMessenger("Login-Failed!!!");
+            return new ResponseMessage("Login-Failed!!!");
         }
     }
 
@@ -109,15 +110,16 @@ public class UserController {
         Set<Role> roles = new HashSet<>();
         for (String role : strRoles) {
             switch (role) {
-                case "admin":
+                case "ADMIN":
                     roles.add(roleService.findByRoleName(RoleName.ADMIN));
                     break;
-                case "pm":
+                case "PM":
                     roles.add(roleService.findByRoleName(RoleName.PM));
                     break;
-                case "user":
+                default:
+//                    "USER":
                     roles.add(roleService.findByRoleName(RoleName.USER));
-                    break;
+//                    break;
             }
         }
         userService.changeRole(id, roles);

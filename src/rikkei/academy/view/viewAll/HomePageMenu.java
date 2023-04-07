@@ -1,10 +1,9 @@
 package rikkei.academy.view.viewAll;
 
 import rikkei.academy.config.ColorConfig;
-import rikkei.academy.config.validate.ValidateInput;
+import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.view.viewAdmin.categoryView.CategoryViewManage;
 import rikkei.academy.view.viewAdmin.productView.ProductViewManage;
-import rikkei.academy.view.viewAdmin.productView.ProductViewMenu;
 
 public class HomePageMenu {
 
@@ -12,7 +11,7 @@ public class HomePageMenu {
         while (true) {
             System.out.println(
                     "\n                                              .————————————————————————————————————————————————————————.\n" +
-                            "                                              ║                    " + ColorConfig.BLUE + "MENU TRANG CHỦ" + ColorConfig.RESET + "                     ║\n" +
+                            "                                              ║                     " + ColorConfig.BLUE + "MENU TRANG CHỦ" + ColorConfig.RESET + "                     ║\n" +
                             "                                              ║--------------------------------------------------------║\n" +
                             "                                              ║              1. Đăng ký                                ║\n" +
                             "                                              ║              2. Đăng nhập                              ║\n" +
@@ -25,7 +24,7 @@ public class HomePageMenu {
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
             System.out.print("|     ");
-            int chooseMenu = ValidateInput.validateInt();
+            int chooseMenu = ValidateInputCustom.validateInt();
             System.out.println("'-------------------------------------------------------------'");
             switch (chooseMenu) {
                 case 1:

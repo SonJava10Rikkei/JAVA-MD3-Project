@@ -2,12 +2,11 @@ package rikkei.academy.view.viewAdmin.productView;
 
 import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.Config;
-import rikkei.academy.config.validate.InputConfig;
 import rikkei.academy.controller.CategoryController;
 import rikkei.academy.controller.ProductController;
 import rikkei.academy.model.productModel.Category;
 import rikkei.academy.model.productModel.Product;
-import rikkei.academy.config.validate.ValidateInput;
+import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.config.customString.CustomString;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -62,18 +61,18 @@ public class ProductViewManage {
                 id = listProduct.get(listProduct.size() - 1).getProductId() + 1;
             }
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
-            System.out.println("|     Nhập tên của sản phẩm mới là:                           |");
+            System.out.println("|     Nhập tên của sản phẩm mới :                             |");
             System.out.print("|     ");
-            String name = InputConfig.getString();
+            String name = ValidateInputCustom.getString();
             System.out.println("|     Nhập thương hiệu của sản phẩm mới :                     |");
             System.out.print("|     ");
-            String brand = InputConfig.getString();
+            String brand = ValidateInputCustom.getString();
             System.out.println("|     Nhập giá của sản phẩm mới :                             |");
             System.out.print("|     ");
-            double price = ValidateInput.validateDouble();
+            double price = ValidateInputCustom.validateDouble();
             System.out.println("|     Nhập số lượng sản phẩm mới :                            |");
             System.out.print("|     ");
-            int quantity = ValidateInput.validateInt();
+            int quantity = ValidateInputCustom.validateInt();
 
             System.out.println("|     Nhập danh mục của sản phẩm mới :                        |\n");
             List<Category> listSelectCategory = new ArrayList<>();
@@ -81,7 +80,7 @@ public class ProductViewManage {
 
             System.out.println("|     Nhập mô tả của sản phẩm mới :                         |");
             System.out.print("|     ");
-            String descriptions = InputConfig.getString();
+            String descriptions = ValidateInputCustom.getString();
 
             Product newProduct = new Product(id, name, brand, price, quantity, listSelectCategory, descriptions);
             productController.createProduct(newProduct);
@@ -105,7 +104,7 @@ public class ProductViewManage {
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Nhập ID của sản phẩm bạn muốn sửa:                      |");
             System.out.print("|     ");
-            int id = ValidateInput.validateInt();
+            int id = ValidateInputCustom.validateInt();
             System.out.println(CustomString.STR_ListProductView);
             for (int i = 0; i < listProduct.size(); i++) {
                 String formatPrice = numberFormat.format(listProduct.get(i).getProductPrice());
@@ -128,22 +127,22 @@ public class ProductViewManage {
                 System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
                 System.out.println("|     Nhập tên mới của sản phẩm:                              |");
                 System.out.print("|     ");
-                String name = InputConfig.getString();
+                String name = ValidateInputCustom.getString();
                 System.out.println("|     Nhập thương hiệu mới của sản phẩm:                      |");
                 System.out.print("|     ");
-                String brand = InputConfig.getString();
+                String brand = ValidateInputCustom.getString();
                 System.out.println("|     Nhập giá mới của sản phẩm:                              |");
                 System.out.print("|     ");
-                double price = ValidateInput.validateDouble();
+                double price = ValidateInputCustom.validateDouble();
                 System.out.println("|     Nhập số lượng sản phẩm mới :                            |");
                 System.out.print("|     ");
-                int quantity = ValidateInput.validateInt();
+                int quantity = ValidateInputCustom.validateInt();
                 System.out.println("|     Nhập danh mục mới của sản phẩm :                        |\n");
                 List<Category> listSelectCategory = new ArrayList<>();
                 selectCategory(listSelectCategory);
                 System.out.println("|     Nhập mô tả mới của sản phẩm:                            |");
                 System.out.print("|     ");
-                String descriptions = InputConfig.getString();
+                String descriptions = ValidateInputCustom.getString();
 
                 Product newProduct = new Product(id, name, brand, price, quantity, listSelectCategory, descriptions);
                 productController.createProduct(newProduct);
@@ -169,7 +168,7 @@ public class ProductViewManage {
 
             System.out.println("|     Nhập ID của sản phẩm bạn muốn xóa:                      |");
             System.out.print("|     ");
-            int targetId = ValidateInput.validateInt();
+            int targetId = ValidateInputCustom.validateInt();
             if (productController.detailProduct(targetId) == null) {
                 System.err.println("|     ID không có trong danh sách sản phẩm hãy nhập lại:      |");
             } else {
@@ -254,7 +253,7 @@ public class ProductViewManage {
         while (true) {
             System.out.println("|     Nhập ID danh mục của sản phẩm mà bạn muốn chọn:         |");
             System.out.print("|     ");
-            int idSelect = ValidateInput.validateInt();
+            int idSelect = ValidateInputCustom.validateInt();
             if (categoryController.detailCategory(idSelect) == null) {
                 System.out.println("|     " + ColorConfig.RED + "ID bạn chọn không có trong danh mục, hãy nhập lại!" + ColorConfig.RESET + "      |");
             } else {
