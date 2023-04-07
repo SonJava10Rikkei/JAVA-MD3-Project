@@ -26,7 +26,7 @@ public class ProductViewManage {
     NumberFormat numberFormat = NumberFormat.getCurrencyInstance(localeVN);
 
     public void showListProduct() {
-        System.out.println(CustomString.ListProductView);
+        System.out.println(CustomString.STR_ListProductView);
         for (int i = 0; i < listProduct.size(); i++) {
             Product product = listProduct.get(i);
             List<String> categories = product.getCategories().stream().map(Category::getNameCategory).collect(Collectors.toList());
@@ -106,7 +106,7 @@ public class ProductViewManage {
             System.out.println("|     Nhập ID của sản phẩm bạn muốn sửa:                      |");
             System.out.print("|     ");
             int id = ValidateInput.validateInt();
-            System.out.println(CustomString.ListProductView);
+            System.out.println(CustomString.STR_ListProductView);
             for (int i = 0; i < listProduct.size(); i++) {
                 String formatPrice = numberFormat.format(listProduct.get(i).getProductPrice());
                 if (id == listProduct.get(i).getProductId()) {
@@ -173,7 +173,7 @@ public class ProductViewManage {
             if (productController.detailProduct(targetId) == null) {
                 System.err.println("|     ID không có trong danh sách sản phẩm hãy nhập lại:      |");
             } else {
-                System.out.println(CustomString.ListProductView);
+                System.out.println(CustomString.STR_ListProductView);
                 for (int i = 0; i < listProduct.size(); i++) {
                     String formatPrice = numberFormat.format(listProduct.get(i).getProductPrice());
                     if (targetId == listProduct.get(i).getProductId()) {
@@ -218,21 +218,6 @@ public class ProductViewManage {
 
         }
     }
-    private void inputCheckNull(int id) {
-        while (true) {
-            String name = Config.scanner().nextLine();
-            if (ValidateInput.isNullOrWhiteSpace(name)) {
-                System.out.println("|     " + ColorConfig.RED + "Chuỗi nhập không được bỏ trống! Hãy nhập lại:" + ColorConfig.RESET + "           |");
-                System.out.print("|     ");
-
-            } else {
-                System.out.println("|     Chuỗi hợp lệ!                                           |");
-                Category newCategory = new Category(id, name);
-                categoryController.createCategory(newCategory);
-                break;
-            }
-        }
-    }
 
 //    public void searchProductByName() {
 //        System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
@@ -258,8 +243,8 @@ public class ProductViewManage {
 //        }
 //    }
 
-    private void selectCategory(List<Category> listSelectCategory) {
-        System.out.println(CustomString.ListCategoryView);
+    public void selectCategory(List<Category> listSelectCategory) {
+        System.out.println(CustomString.STR_ListCategoryView);
         for (int i = 0; i < listCategory.size(); i++) {
             if (listCategory.size() != 0) {
                 System.out.printf("                                                  ║   %-2d   |   %-33s ║\n", listCategory.get(i).getId(), listCategory.get(i).getNameCategory());

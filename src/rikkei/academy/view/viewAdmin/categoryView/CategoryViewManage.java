@@ -15,7 +15,7 @@ public class CategoryViewManage {
 
 
     public void showListCategory() {
-        System.out.println(CustomString.ListCategoryView);
+        System.out.println(CustomString.STR_ListCategoryView);
         for (int i = 0; i < listCategory.size(); i++) {
             if (listCategory.size() != 0) {
                 System.out.printf("                                                  ║   %-2d   |   %-33s ║\n", listCategory.get(i).getId(), listCategory.get(i).getNameCategory());
@@ -70,7 +70,7 @@ public class CategoryViewManage {
             for (int i = 0; i < listCategory.size(); i++) {
                 if (id == listCategory.get(i).getId()) {
                     System.out.println("|     Danh mục sản phẩm bạn muốn chỉnh sửa là:                |");
-                    System.out.println(CustomString.ListCategoryView);
+                    System.out.println(CustomString.STR_ListCategoryView);
                     System.out.printf("                                                  ║   %-2d   |   %-33s ║\n", listCategory.get(i).getId(), listCategory.get(i).getNameCategory());
                     System.out.println("                                                  '——————————————————————————————————————————————'\n");
                 }
@@ -126,7 +126,7 @@ public class CategoryViewManage {
                 for (int i = 0; i < listCategory.size(); i++) {
                     if (targetId == listCategory.get(i).getId()) {
                         System.out.println("|     Danh mục sản phẩm bạn muốn chỉnh sửa là:                |\n");
-                        System.out.println(CustomString.ListCategoryView);
+                        System.out.println(CustomString.STR_ListCategoryView);
                         System.out.printf("                                                  ║   %-2d   |   %-33s ║\n", listCategory.get(i).getId(), listCategory.get(i).getNameCategory());
                         System.out.println("                                                  '——————————————————————————————————————————————'\n");
                     }

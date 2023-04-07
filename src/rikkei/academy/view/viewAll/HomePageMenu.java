@@ -2,13 +2,26 @@ package rikkei.academy.view.viewAll;
 
 import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.validate.ValidateInput;
-import rikkei.academy.config.customString.CustomStringMainMenu;
+import rikkei.academy.view.viewAdmin.categoryView.CategoryViewManage;
+import rikkei.academy.view.viewAdmin.productView.ProductViewManage;
+import rikkei.academy.view.viewAdmin.productView.ProductViewMenu;
 
 public class HomePageMenu {
 
     public HomePageMenu() {
         while (true) {
-            System.out.println(CustomStringMainMenu.welcomeMenu);
+            System.out.println(
+                    "\n                                              .————————————————————————————————————————————————————————.\n" +
+                            "                                              ║                    " + ColorConfig.BLUE + "MENU TRANG CHỦ" + ColorConfig.RESET + "                     ║\n" +
+                            "                                              ║--------------------------------------------------------║\n" +
+                            "                                              ║              1. Đăng ký                                ║\n" +
+                            "                                              ║              2. Đăng nhập                              ║\n" +
+                            "                                              ║              3. Danh mục sản phẩm                      ║\n" +
+                            "                                              ║              4. Xem tất cả sản phẩm                    ║\n" +
+                            "                                              ║              5. Tìm kiếm sản phẩm                      ║\n" +
+                            "                                              ║              6. Sắp xếp sản phẩm theo giá              ║\n" +
+                            "                                              ║              0. Thoát chương trình                     ║\n" +
+                            "                                              '————————————————————————————————————————————————————————'\n");
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
             System.out.print("|     ");
@@ -16,16 +29,16 @@ public class HomePageMenu {
             System.out.println("'-------------------------------------------------------------'");
             switch (chooseMenu) {
                 case 1:
-
+                    new FormLoginRegister().fromRegister();
                     break;
                 case 2:
-
+                    new FormLoginRegister().formLogin();
                     break;
                 case 3:
-
+                    new CategoryViewManage().showListCategory();
                     break;
                 case 4:
-
+                    new ProductViewManage().showListProduct();
                     break;
                 case 5:
 

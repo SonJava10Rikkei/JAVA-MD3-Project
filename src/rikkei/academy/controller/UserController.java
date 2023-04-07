@@ -18,9 +18,8 @@ import java.util.List;
 import java.util.Set;
 
 public class UserController {
-
-    IRoleService roleService = new RoleServiceIMPL();
-    IUserService userService = new UserServiceIMPL();
+    private IUserService userService = new UserServiceIMPL();
+    private IRoleService roleService = new RoleServiceIMPL();
 
     public List<User> getUserList() {
         return userService.findAll();
@@ -30,13 +29,13 @@ public class UserController {
         if (userService.existedByUserName(sinUpDTO.getUsername())) {
             return new ResponseMessenger("Username_Existed!!!");
         }
-        if (userService.existedByMail(sinUpDTO.getEmail())){
+        if (userService.existedByMail(sinUpDTO.getEmail())) {
             return new ResponseMessenger("Email_Existed!!!");
         }
         Set<String> strRoles = sinUpDTO.getRoles();
         Set<Role> roles = new HashSet<>();
-        for (String role: strRoles) {
-            switch (role){
+        for (String role : strRoles) {
+            switch (role) {
                 case "pm":
                     roles.add(roleService.findByRoleName(RoleName.PM));
                     break;
@@ -64,44 +63,52 @@ public class UserController {
         return new ResponseMessenger("Create success");
 
     }
-    public ResponseMessenger login(SignUpDTO sinUpDTO){
-        if (userService.checkLogin(sinUpDTO.getUsername(),sinUpDTO.getPassword())){
+
+    public ResponseMessenger login(SignUpDTO sinUpDTO) {
+        if (userService.checkLogin(sinUpDTO.getUsername(), sinUpDTO.getPassword())) {
             User user = userService.findByUserName(sinUpDTO.getUsername());
 
             List<User> userLogin = new ArrayList<>();
             userLogin.add(user);
-            new Config<User>().writeToFile(PathConfig.PATH_USER_PRINCIPAL,userLogin);
+            new Config<User>().writeToFile(PathConfig.PATH_USER_PRINCIPAL, userLogin);
             return new ResponseMessenger("Login-Success");
-        }else {
+        } else {
             return new ResponseMessenger("Login-Failed!!!");
         }
     }
-    public User grtCurrenUser(){
+
+    public User getCurrenUser() {
         return userService.getCurrenUser();
     }
 
-    public void logOut(){
-        new Config<User>().writeToFile(PathConfig.PATH_USER_PRINCIPAL,null);
+    public void logOut() {
+        new Config<User>().writeToFile(PathConfig.PATH_USER_PRINCIPAL, null);
     }
-    public void changeStatus(int id){
+
+    public void changeStatus(int id) {
         userService.changeStatus(id);
     }
-    public User findById(int id){
+
+    public User findById(int id) {
         return userService.findById(id);
     }
-    public List<User> findByRoleName(RoleName... roleNames){
+
+    public List<User> findByRoleName(RoleName... roleNames) {
         return userService.findByRole(roleNames);
     }
-    public boolean existByEmail(String email){
+
+    public boolean existByEmail(String email) {
         return userService.existedByMail(email);
     }
-    public void deleteUserById(int id){
+
+    public void deleteUserById(int id) {
         userService.deleteById(id);
     }
-    public void setRole(int id, Set<String> strRoles){
+
+    public void setRole(int id, Set<String> strRoles) {
         Set<Role> roles = new HashSet<>();
-        for (String role: strRoles) {
-            switch (role){
+        for (String role : strRoles) {
+            switch (role) {
                 case "admin":
                     roles.add(roleService.findByRoleName(RoleName.ADMIN));
                     break;
@@ -113,10 +120,10 @@ public class UserController {
                     break;
             }
         }
-        userService.changeRole(id,roles);
+        userService.changeRole(id, roles);
     }
 
-    public void upDateProFile(User user){
+    public void upDateProFile(User user) {
         userService.changeProFile(user);
     }
 

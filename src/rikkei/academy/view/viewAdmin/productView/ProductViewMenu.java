@@ -2,12 +2,13 @@ package rikkei.academy.view.viewAdmin.productView;
 
 import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.validate.ValidateInput;
-import rikkei.academy.config.customString.CustomStringMenuViewAd;
+import rikkei.academy.config.customString.CustomStringMenuView;
+import rikkei.academy.view.viewAll.HomePageMenu;
 
 public class ProductViewMenu {
     public ProductViewMenu() {
         while (true) {
-            System.out.println(CustomStringMenuViewAd.ProductMenu);
+            System.out.println(CustomStringMenuView.STR_ProductMenu);
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
             System.out.print("|     ");
