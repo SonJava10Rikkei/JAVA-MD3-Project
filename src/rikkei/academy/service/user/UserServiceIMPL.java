@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 public class UserServiceIMPL implements IUserService {
-    static List<User> userList = new Config<User>().readFormFile(PathConfig.PATH_USER);
+     List<User> userList = new Config<User>().readFormFile(PathConfig.PATH_USER);
 
     @Override
     public List<User> findAll() {

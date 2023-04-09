@@ -26,41 +26,37 @@ public class UserController {
     }
 
     public ResponseMessage register(SignUpDTO signUpDTO) {
+
         if (userService.existedByUserName(signUpDTO.getUsername())) {
             return new ResponseMessage("Username_Existed!!!");
         }
         if (userService.existedByMail(signUpDTO.getEmail())) {
             return new ResponseMessage("Email_Existed!!!");
         }
-        Set<String> strRoles = signUpDTO.getRoles();
-        Set<Role> roles = new HashSet<>();
-        for (String role : strRoles) {
+        Set<Role> roleSet = new HashSet<>();
+        Set<String> strRole = signUpDTO.getRoles();
+        strRole.forEach(role -> {
             switch (role) {
-                case "pm":
-                    roles.add(roleService.findByRoleName(RoleName.PM));
-                    break;
                 case "admin":
-                    roles.add(roleService.findByRoleName(RoleName.ADMIN));
+                    roleSet.add(roleService.findByRoleName(RoleName.ADMIN));
                     break;
+                case "pm":
+                    roleSet.add(roleService.findByRoleName(RoleName.PM));
                 default:
-//                    "user":
-                    roles.add(roleService.findByRoleName(RoleName.USER));
-//                    break;
-//                default:
-//                    return new ResponseMessage("Invalid role");
-
+                    roleSet.add(roleService.findByRoleName(RoleName.USER));
             }
-        }
+        });
         User user = new User(
                 signUpDTO.getId(),
                 signUpDTO.getName(),
                 signUpDTO.getUsername(),
                 signUpDTO.getEmail(),
                 signUpDTO.getPassword(),
-                roles
+                roleSet
         );
         userService.save(user);
-//        System.out.println(getUserList());
+        // Hiển thị danh sách user
+        System.out.println(getUserList());
         return new ResponseMessage("Create success");
 
     }
@@ -107,22 +103,22 @@ public class UserController {
     }
 
     public void setRole(int id, Set<String> strRoles) {
-        Set<Role> roles = new HashSet<>();
+        Set<Role> roleSet = new HashSet<>();
         for (String role : strRoles) {
             switch (role) {
-                case "ADMIN":
-                    roles.add(roleService.findByRoleName(RoleName.ADMIN));
+                case "admin":
+                    roleSet.add(roleService.findByRoleName(RoleName.ADMIN));
                     break;
-                case "PM":
-                    roles.add(roleService.findByRoleName(RoleName.PM));
+                case "pm":
+                    roleSet.add(roleService.findByRoleName(RoleName.PM));
                     break;
-                default:
-//                    "USER":
-                    roles.add(roleService.findByRoleName(RoleName.USER));
-//                    break;
+                case "user":
+                    roleSet.add(roleService.findByRoleName(RoleName.USER));
+                    break;
+
             }
         }
-        userService.changeRole(id, roles);
+        userService.changeRole(id, roleSet);
     }
 
     public void upDateProFile(User user) {

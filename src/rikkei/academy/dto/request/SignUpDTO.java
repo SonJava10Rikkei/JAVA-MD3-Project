@@ -1,5 +1,6 @@
 package rikkei.academy.dto.request;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class SignUpDTO {
@@ -8,20 +9,20 @@ public class SignUpDTO {
     private String username;
     private String email;
     private String password;
-    private Set<String> roles;
+    private Set<String> strRole = new HashSet<>();
 
     public SignUpDTO(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public SignUpDTO(int id, String name, String username, String email, String password, Set<String> roles) {
+    public SignUpDTO(int id, String name, String username, String email, String password, Set<String> strRole) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.roles = roles;
+        this.strRole = strRole;
     }
 
     public int getId() {
@@ -65,10 +66,10 @@ public class SignUpDTO {
     }
 
     public Set<String> getRoles() {
-        return roles;
+        return strRole;
     }
 
-    public void setRoles(Set<String> roles) {
-        this.roles = roles;
+    public void setRole(Set<String> strRole) {
+        this.strRole = strRole;
     }
 }

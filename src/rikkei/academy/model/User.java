@@ -5,6 +5,7 @@ import rikkei.academy.model.role.RoleName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 public class User implements Serializable {
@@ -16,16 +17,12 @@ public class User implements Serializable {
     private String password;
     private String avatar;
     private boolean status;
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
-    public User(int id, String name, String username, String email, String password, Set<Role> roles) {
-        this.id = id;
-        this.name = name;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
+    public User() {
     }
+
+
 
     public User(int id, String name, String username, String email, String password, String avatar, boolean status, Set<Role> roles) {
         this.id = id;
@@ -37,6 +34,16 @@ public class User implements Serializable {
         this.status = status;
         this.roles = roles;
     }
+
+    public User(int id, String name, String username, String email, String password, Set<Role> roleSet) {
+        this.id = id;
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.roles = roleSet;
+    }
+
     public RoleName getListRole(){
         return new ArrayList<>(this.roles).get(0).getRoleName();
     }

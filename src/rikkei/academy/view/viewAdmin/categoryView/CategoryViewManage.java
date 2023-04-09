@@ -3,6 +3,7 @@ package rikkei.academy.view.viewAdmin.categoryView;
 import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.Config;
 import rikkei.academy.config.customString.CustomString;
+import rikkei.academy.config.customString.CustomStringMenuView;
 import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.controller.CategoryController;
 import rikkei.academy.model.productModel.Category;
@@ -13,6 +14,37 @@ public class CategoryViewManage {
     CategoryController categoryController = new CategoryController();
     List<Category> listCategory = categoryController.getListCategory();
 
+    public CategoryViewManage() {
+        while (true) {
+            System.out.println(CustomStringMenuView.STR_CategoryMenu);
+            System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
+            System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
+            System.out.print("|     ");
+            int chooseMenu = ValidateInputCustom.validateInt();
+            System.out.println("'-------------------------------------------------------------'");
+            switch (chooseMenu) {
+                case 1:
+                    showListCategory();
+                    break;
+                case 2:
+                    formCreateCategory();
+                    break;
+                case 3:
+                    updateCategory();
+                    break;
+                case 4:
+                    deleteCategory();
+                    break;
+                case 0:
+                    System.err.println("     Bạn đã thoát chương trình!     ");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0->4)!              |" + ColorConfig.RESET + "\n" +
+                            "'-------------------------------------------------------------'\n");
+            }
+        }
+    }
 
     public void showListCategory() {
         System.out.println(CustomString.STR_ListCategoryView);

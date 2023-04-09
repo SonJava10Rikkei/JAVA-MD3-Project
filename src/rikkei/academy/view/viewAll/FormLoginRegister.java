@@ -19,14 +19,14 @@ public class FormLoginRegister {
 
     public void fromRegister() {
 
-//        System.out.println("size -->" + userList.size());
+        System.out.println("size -->" + userList.size());
         int id = 0;
         if (userList.size() == 0) {
             id = 1;
         } else {
             id = userList.get(userList.size() - 1).getId() + 1;
         }
-//        System.out.println("id =---" + id);
+        System.out.println("id =---" + id);
         System.out.println("Enter the name: ");
         String name = Config.scanner().nextLine();
         System.out.println("Enter the username: ");
@@ -65,7 +65,6 @@ public class FormLoginRegister {
         System.out.println(".------------------" + ColorConfig.BLUE + " Điền thông tin đăng ký " + ColorConfig.RESET + "-------------------.");
 
         System.out.println("|     Nhập tên đăng nhập của bạn :                            |");
-        System.out.println("|     Nhập tên của sản phẩm mới là:                           |");
         System.out.print("|     ");
         String username;
         while (true) {
