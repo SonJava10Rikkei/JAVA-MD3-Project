@@ -322,7 +322,7 @@ public class ProductViewManage {
         }
         System.out.println("                                                  '——————————————————————————————————————————————'");
         while (true) {
-            System.out.println("|     Nhập ID danh mục của sản phẩm mà bạn muốn chọn:         |");
+            System.out.println("|     Nhập ID danh mục của sản phẩm mà bạn muốn chọn :        |");
             System.out.print("|     ");
             int idSelect = ValidateInputCustom.validateInt();
             if (categoryController.detailCategory(idSelect) == null) {
