@@ -45,10 +45,8 @@ public class ProductController {
     public List<Product> searchProductByName(String name) {
         return productService.searchProductByName(name);
     }
-    public List<Product> findAllByPriceAsc(){
+
+    public List<Product> findAllByPriceAsc() {
         return productService.findAllByPriceAsc();
-    }
-    public List<Product> findAllByPriceDesc(){
-        return productService.findAllByPriceDesc();
     }
 }

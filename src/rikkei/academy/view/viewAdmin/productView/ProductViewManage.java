@@ -8,8 +8,6 @@ import rikkei.academy.controller.CategoryController;
 import rikkei.academy.controller.ProductController;
 import rikkei.academy.model.productModel.Category;
 import rikkei.academy.model.productModel.Product;
-import rikkei.academy.view.viewAdmin.categoryView.CategoryViewManage;
-import rikkei.academy.view.viewAll.viewLoginRegister.FormLoginRegister;
 import rikkei.academy.view.viewAll.viewLoginRegister.HomePageMenu;
 
 import java.text.NumberFormat;
@@ -263,7 +261,7 @@ public class ProductViewManage {
         }
     }
 
-    public void sortProduct(){
+    public void sortProduct() {
         while (true) {
             System.out.println(
                     "\n                                              .————————————————————————————————————————————————————————.\n" +
@@ -271,7 +269,7 @@ public class ProductViewManage {
                             "                                              ║--------------------------------------------------------║\n" +
                             "                                              ║         1. Sắp xếp sản phẩm theo giá tăng dần          ║\n" +
                             "                                              ║         2. Sắp xếp sản phẩm theo giá giảm dần          ║\n" +
-                            "                                              ║         0. Thoát chương trình                          ║\n" +
+                            "                                              ║         0. Quay về menu                                ║\n" +
                             "                                              '————————————————————————————————————————————————————————'\n");
             System.out.println(".---------------" + ColorConfig.BLUE + " 6. Sắp xếp sản phẩm theo giá " + ColorConfig.RESET + "----------------.");
             System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
@@ -280,15 +278,12 @@ public class ProductViewManage {
             System.out.println("'-------------------------------------------------------------'");
             switch (chooseMenu) {
                 case 1:
-                  productController.findAllByPriceAsc();
+                    findAllByPriceAsc();
                     break;
                 case 2:
-                    productController.findAllByPriceDesc();
                     break;
                 case 0:
-                    System.err.println("     Bạn đã thoát chương trình!     ");
-                    System.exit(0);
-                    break;
+                    new HomePageMenu();
                 default:
                     System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0-7)!               |" + ColorConfig.RESET + "\n" +
                             "'-------------------------------------------------------------'\n");
@@ -297,9 +292,25 @@ public class ProductViewManage {
 
     }
 
-
-
-
+    public void findAllByPriceAsc() {
+        System.out.println(CustomString.STR_ListProductView);
+        for (int i = 0; i < productController.findAllByPriceAsc().size(); i++) {
+            Product product = productController.findAllByPriceAsc().get(i);
+            List<String> categories = product.getCategories().stream().map(Category::getNameCategory).collect(Collectors.toList());
+            String categoriesString = String.join(", ", categories);
+            String formatPrice = numberFormat.format(productController.findAllByPriceAsc().get(i).getProductPrice());
+            System.out.printf("       ║   %-2d   |    %-15s   |      %-10s    |    %12s  |   %-2d   |    %-15s   |   %-33s ║\n",
+                    productController.findAllByPriceAsc().get(i).getProductId(),
+                    productController.findAllByPriceAsc().get(i).getProductName(),
+                    productController.findAllByPriceAsc().get(i).getProductBrand(),
+                    formatPrice,
+                    productController.findAllByPriceAsc().get(i).getQuantity(),
+                    categoriesString,
+                    productController.findAllByPriceAsc().get(i).getDescriptions());
+        }
+        System.out.println("       '—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————'\n");
+        productController.getListProduct();
+    }
 
 
     public void selectCategory(List<Category> listSelectCategory) {

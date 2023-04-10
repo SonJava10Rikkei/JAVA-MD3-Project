@@ -5,6 +5,7 @@ import rikkei.academy.config.PathConfig;
 import rikkei.academy.model.productModel.Product;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -64,6 +65,22 @@ public class ProductServiceIMPL implements IProductService {
         }
         return searchWithName;
     }
+
+//    @Override
+//    public List<Product> findAllByPriceAsc() {
+//        List<Product> sortPrice = new ArrayList<>();
+//        for (int i = 0; i < listProducts.size(); i++) {
+//            sortPrice.add(listProducts.get(i));
+//        }
+//        Collections.sort(sortPrice);
+//        List<Product> findAllByPriceAsc = new ArrayList<>();
+//        for (int i = 0; i < 5; i++) {
+//            findAllByPriceAsc.add(sortPrice.get(i));
+//        }
+//
+//        return findAllByPriceAsc;
+//    }
+
     @Override
     public List<Product> findAllByPriceAsc() {
         List<Product> sortedProducts = new ArrayList<>(listProducts);
