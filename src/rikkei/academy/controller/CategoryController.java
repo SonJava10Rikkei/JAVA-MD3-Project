@@ -1,8 +1,8 @@
 package rikkei.academy.controller;
 
 import rikkei.academy.model.productModel.Category;
-import rikkei.academy.service.categoryVideo.CategoryServiceIMPL;
-import rikkei.academy.service.categoryVideo.ICategoryService;
+import rikkei.academy.service.categoryService.CategoryServiceIMPL;
+import rikkei.academy.service.categoryService.ICategoryService;
 
 import java.util.List;
 

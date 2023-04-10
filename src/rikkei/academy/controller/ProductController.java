@@ -33,7 +33,7 @@ public class ProductController {
     public List<Product> searchProductByName(String name) {
         List<Product> result = new ArrayList<>();
         for (Product product : productService.findAll()) {
-            if (product.getProductName().equalsIgnoreCase(name)) {
+            if (product.getProductName().contains(name)) {
                 result.add(product);
             }
         }

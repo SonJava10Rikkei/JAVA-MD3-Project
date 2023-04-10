@@ -1,4 +1,4 @@
-package rikkei.academy.view.viewAll;
+package rikkei.academy.view.viewAll.viewLoginRegister;
 
 import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.validate.ValidateInputCustom;
@@ -40,7 +40,9 @@ public class HomePageMenu {
                     new ProductViewManage().showListProduct();
                     break;
                 case 5:
-
+                    new ProductViewManage().searchProductByName();
+                    break;
+                case 6:
                     break;
                 case 0:
                     System.err.println("     Bạn đã thoát chương trình!     ");

@@ -1,4 +1,4 @@
-package rikkei.academy.service.categoryVideo;
+package rikkei.academy.service.categoryService;
 
 import rikkei.academy.model.productModel.Category;
 import rikkei.academy.service.IGenericService;

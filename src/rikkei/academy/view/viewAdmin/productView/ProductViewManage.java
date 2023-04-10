@@ -8,6 +8,8 @@ import rikkei.academy.model.productModel.Category;
 import rikkei.academy.model.productModel.Product;
 import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.config.customString.CustomString;
+import rikkei.academy.view.viewAll.viewLoginRegister.HomePageMenu;
+
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -165,7 +167,6 @@ public class ProductViewManage {
     public void deleteCategory() {
         while (true) {
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
-
             System.out.println("|     Nhập ID của sản phẩm bạn muốn xóa:                      |");
             System.out.print("|     ");
             int targetId = ValidateInputCustom.validateInt();
@@ -213,34 +214,50 @@ public class ProductViewManage {
             if (backMenu.equalsIgnoreCase("m")) {
                 new ProductViewMenu();
             }
-
-
         }
     }
 
-//    public void searchProductByName() {
-//        System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
-//
-//        System.out.println("Nhập tên sản phẩm cần tìm kiếm: ");
-//        System.out.print("|     ");
-//        String name = Config.scanner().nextLine();
-//        List<Product> result = productController.searchProductByName(name);
-//        if (result.isEmpty()) {
-//            System.out.println("Không tìm thấy sản phẩm nào có tên là '" + name + "'");
-//        } else {
-//            System.out.println("Kết quả tìm kiếm:");
-//            for (Product product : result) {
-//                System.out.println(product);
-//            }
-//        }
-//        System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
-//        System.out.println("Enter để quay lại Menu ! ");
-//        System.out.print("|     ");
-//        String backMenu = Config.scanner().nextLine();
-//        if (backMenu.equalsIgnoreCase("m")) {
-//            new ProductViewMenu();
-//        }
-//    }
+    public void searchProductByName() {
+        List<Product> searchProduct = new ArrayList<>();
+        while (true) {
+            System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
+            System.out.print(
+                    "|     Nhập tên sản phẩm cần tìm kiếm:                         |\n" +
+                            "|     ");
+            String name = ValidateInputCustom.getString().toLowerCase();
+            for (int i = 0; i < listProduct.size(); i++) {
+                if (listProduct.get(i).getProductName().toLowerCase().contains(name)) {
+                    searchProduct.add(listProduct.get(i));
+                }
+            }
+            System.out.println(searchProduct);
+            System.out.println(CustomString.STR_ListProductView);
+            for (int i = 0; i < searchProduct.size(); i++) {
+                Product product = searchProduct.get(i);
+                List<String> categories = product.getCategories().stream().map(Category::getNameCategory).collect(Collectors.toList());
+                String categoriesString = String.join(", ", categories);
+                String formatPrice = numberFormat.format(searchProduct.get(i).getProductPrice());
+                System.out.printf("       ║   %-2d   |    %-15s   |      %-10s    |    %12s  |   %-2d   |    %-15s   |   %-33s ║\n",
+                        searchProduct.get(i).getProductId(),
+                        searchProduct.get(i).getProductName(),
+                        searchProduct.get(i).getProductBrand(),
+                        formatPrice,
+                        searchProduct.get(i).getQuantity(),
+                        categoriesString,
+                        searchProduct.get(i).getDescriptions());
+            }
+            System.out.println("       '—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————'\n");
+            System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
+            System.out.println("|     Nhập phím bất kỳ để tìm kiếm sản phẩm khác              |");
+            System.out.println("|     hoặc nhập 'M' để quay lại Menu:                         |");
+            System.out.print("|     ");
+            String backMenu = Config.scanner().nextLine();
+            System.out.println("'-------------------------------------------------------------'\n");
+            if (backMenu.equalsIgnoreCase("m")) {
+                new HomePageMenu();
+            }
+        }
+    }
 
     public void selectCategory(List<Category> listSelectCategory) {
         System.out.println(CustomString.STR_ListCategoryView);

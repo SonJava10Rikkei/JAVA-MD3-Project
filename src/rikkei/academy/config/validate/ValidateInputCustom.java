@@ -34,10 +34,20 @@ public class ValidateInputCustom {
         }
     }
 
+
+    public static boolean validateName(String name) {
+        String pattern = "^\\S.{0,38}\\S$";
+        return Pattern.matches(pattern, name);
+    }
+
+    public static String validateUserName = "^(?=\\S+$).{1,30}$";
+
     public static boolean validateEmail(String email) {
         String pattern = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         return Pattern.matches(pattern, email);
     }
+
+    public static String validatePassword = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,10}$";
 
     public static boolean isNullOrWhiteSpace(String input) {
         return input == null || input.trim().isEmpty();

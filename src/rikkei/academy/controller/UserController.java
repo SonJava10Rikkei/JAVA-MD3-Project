@@ -56,7 +56,7 @@ public class UserController {
         );
         userService.save(user);
         // Hiển thị danh sách user
-        System.out.println(getUserList());
+//        System.out.println(getUserList());
         return new ResponseMessage("Create success");
 
     }
