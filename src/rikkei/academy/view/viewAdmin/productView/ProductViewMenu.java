@@ -7,7 +7,16 @@ import rikkei.academy.config.customString.CustomStringMenuView;
 public class ProductViewMenu {
     public ProductViewMenu() {
         while (true) {
-            System.out.println(CustomStringMenuView.STR_ProductMenu);
+            System.out.println(
+                    "\n                                              .————————————————————————————————————————————————————————.\n" +
+                    "                                              ║                     " + ColorConfig.BLUE + "MENU SẢN PHẨM" + ColorConfig.RESET + "                      ║\n" +
+                    "                                              ║--------------------------------------------------------║\n" +
+                    "                                              ║             1. Hiển thị danh sách sản phẩm             ║\n" +
+                    "                                              ║             2. Thêm mới sản phẩm                       ║\n" +
+                    "                                              ║             3. Sửa sản phẩm                            ║\n" +
+                    "                                              ║             4. Xóa sản phẩm                            ║\n" +
+                    "                                              ║             0. Thoát chương trình                      ║\n" +
+                    "                                              '————————————————————————————————————————————————————————'\n");
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
             System.out.print("|     ");

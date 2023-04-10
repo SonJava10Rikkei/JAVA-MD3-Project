@@ -15,6 +15,7 @@ public class Product implements Serializable, Comparable<Product> {
     private String descriptions;
     private boolean status = true;
 
+
     public Product() {
     }
 
@@ -91,6 +92,7 @@ public class Product implements Serializable, Comparable<Product> {
     public void setDescriptions(String descriptions) {
         this.descriptions = descriptions;
     }
+
 
     @Override
     public String toString() {

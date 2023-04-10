@@ -1,5 +1,6 @@
 package rikkei.academy.controller;
 
+import rikkei.academy.model.productModel.Category;
 import rikkei.academy.model.productModel.Product;
 import rikkei.academy.service.productService.IProductService;
 import rikkei.academy.service.productService.ProductServiceIMPL;
@@ -29,14 +30,25 @@ public class ProductController {
     public void deleteProduct(int id) {
         productService.deleteById(id);
     }
-
-    public List<Product> searchProductByName(String name) {
-        List<Product> result = new ArrayList<>();
+    public List<Product> showProductWithCategory(int id) {
+        List<Product> productList = new ArrayList<>();
         for (Product product : productService.findAll()) {
-            if (product.getProductName().contains(name)) {
-                result.add(product);
+            for (Category category : product.getCategories()) {
+                if (id == category.getId()) {
+                    productList.add(product);
+                }
             }
         }
-        return result;
+        return productList;
+    }
+
+    public List<Product> searchProductByName(String name) {
+        return productService.searchProductByName(name);
+    }
+    public List<Product> findAllByPriceAsc(){
+        return productService.findAllByPriceAsc();
+    }
+    public List<Product> findAllByPriceDesc(){
+        return productService.findAllByPriceDesc();
     }
 }

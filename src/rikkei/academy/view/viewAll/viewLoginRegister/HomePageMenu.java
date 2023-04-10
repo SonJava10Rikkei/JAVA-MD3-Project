@@ -43,6 +43,7 @@ public class HomePageMenu {
                     new ProductViewManage().searchProductByName();
                     break;
                 case 6:
+                    new ProductViewManage().sortProduct();
                     break;
                 case 0:
                     System.err.println("     Bạn đã thoát chương trình!     ");

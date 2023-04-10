@@ -2,12 +2,14 @@ package rikkei.academy.view.viewAdmin.productView;
 
 import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.Config;
+import rikkei.academy.config.customString.CustomString;
+import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.controller.CategoryController;
 import rikkei.academy.controller.ProductController;
 import rikkei.academy.model.productModel.Category;
 import rikkei.academy.model.productModel.Product;
-import rikkei.academy.config.validate.ValidateInputCustom;
-import rikkei.academy.config.customString.CustomString;
+import rikkei.academy.view.viewAdmin.categoryView.CategoryViewManage;
+import rikkei.academy.view.viewAll.viewLoginRegister.FormLoginRegister;
 import rikkei.academy.view.viewAll.viewLoginRegister.HomePageMenu;
 
 import java.text.NumberFormat;
@@ -62,7 +64,7 @@ public class ProductViewManage {
             } else {
                 id = listProduct.get(listProduct.size() - 1).getProductId() + 1;
             }
-            System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
+            System.out.println(".-------------------" + ColorConfig.BLUE + " 2. Thêm mới sản phẩm " + ColorConfig.RESET + "--------------------.");
             System.out.println("|     Nhập tên của sản phẩm mới :                             |");
             System.out.print("|     ");
             String name = ValidateInputCustom.getString();
@@ -80,7 +82,7 @@ public class ProductViewManage {
             List<Category> listSelectCategory = new ArrayList<>();
             selectCategory(listSelectCategory);
 
-            System.out.println("|     Nhập mô tả của sản phẩm mới :                         |");
+            System.out.println("|     Nhập mô tả của sản phẩm mới :                           |");
             System.out.print("|     ");
             String descriptions = ValidateInputCustom.getString();
 
@@ -103,7 +105,7 @@ public class ProductViewManage {
 
     public void updateProduct() {
         while (true) {
-            System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
+            System.out.println(".---------------------" + ColorConfig.BLUE + " 3. Sửa sản phẩm " + ColorConfig.RESET + "-----------------------.");
             System.out.println("|     Nhập ID của sản phẩm bạn muốn sửa:                      |");
             System.out.print("|     ");
             int id = ValidateInputCustom.validateInt();
@@ -152,7 +154,6 @@ public class ProductViewManage {
                 System.out.println("|" + ColorConfig.GREEN + "     Đã sửa thành công !!!                                   " + ColorConfig.RESET + "|");
 
             }
-//            System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Nhập phím bất kỳ để sửa sản phẩm khác,                  |");
             System.out.println("|     hoặc nhập 'M' để quay lại Menu:                         |");
             System.out.print("|     ");
@@ -167,6 +168,7 @@ public class ProductViewManage {
     public void deleteCategory() {
         while (true) {
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
+            System.out.println(".-----------------------" + ColorConfig.BLUE + " 4. Xóa sản ph " + ColorConfig.RESET + "-----------------------.");
             System.out.println("|     Nhập ID của sản phẩm bạn muốn xóa:                      |");
             System.out.print("|     ");
             int targetId = ValidateInputCustom.validateInt();
@@ -218,35 +220,37 @@ public class ProductViewManage {
     }
 
     public void searchProductByName() {
-        List<Product> searchProduct = new ArrayList<>();
         while (true) {
-            System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
+            System.out.println(".-------------------" + ColorConfig.BLUE + " 5. Tìm kiếm sản phẩm " + ColorConfig.RESET + "--------------------.");
             System.out.print(
                     "|     Nhập tên sản phẩm cần tìm kiếm:                         |\n" +
                             "|     ");
-            String name = ValidateInputCustom.getString().toLowerCase();
-            for (int i = 0; i < listProduct.size(); i++) {
-                if (listProduct.get(i).getProductName().toLowerCase().contains(name)) {
-                    searchProduct.add(listProduct.get(i));
+            String searchName = ValidateInputCustom.getString();
+            List<Product> searchProduct = productController.searchProductByName(searchName);
+            if (searchProduct.size() == 0) {
+                System.out.println("|     " + ColorConfig.YELLOW + "Không có sản phẩm nào tên là:" + ColorConfig.RESET + "                           |");
+                System.out.print("|     " + "\'" + searchName + "\'\n");
+                System.out.println("'-------------------------------------------------------------'");
+
+            } else {
+                System.out.println("|     " + ColorConfig.GREEN + "Kết quả tìm thấy ở danh sách sau:" + ColorConfig.RESET + "                       |");
+                System.out.println(CustomString.STR_ListProductView);
+                for (int i = 0; i < searchProduct.size(); i++) {
+                    Product product = searchProduct.get(i);
+                    List<String> categories = product.getCategories().stream().map(Category::getNameCategory).collect(Collectors.toList());
+                    String categoriesString = String.join(", ", categories);
+                    String formatPrice = numberFormat.format(searchProduct.get(i).getProductPrice());
+                    System.out.printf("       ║   %-2d   |    %-15s   |      %-10s    |    %12s  |   %-2d   |    %-15s   |   %-33s ║\n",
+                            searchProduct.get(i).getProductId(),
+                            searchProduct.get(i).getProductName(),
+                            searchProduct.get(i).getProductBrand(),
+                            formatPrice,
+                            searchProduct.get(i).getQuantity(),
+                            categoriesString,
+                            searchProduct.get(i).getDescriptions());
                 }
+                System.out.println("       '—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————'\n");
             }
-            System.out.println(searchProduct);
-            System.out.println(CustomString.STR_ListProductView);
-            for (int i = 0; i < searchProduct.size(); i++) {
-                Product product = searchProduct.get(i);
-                List<String> categories = product.getCategories().stream().map(Category::getNameCategory).collect(Collectors.toList());
-                String categoriesString = String.join(", ", categories);
-                String formatPrice = numberFormat.format(searchProduct.get(i).getProductPrice());
-                System.out.printf("       ║   %-2d   |    %-15s   |      %-10s    |    %12s  |   %-2d   |    %-15s   |   %-33s ║\n",
-                        searchProduct.get(i).getProductId(),
-                        searchProduct.get(i).getProductName(),
-                        searchProduct.get(i).getProductBrand(),
-                        formatPrice,
-                        searchProduct.get(i).getQuantity(),
-                        categoriesString,
-                        searchProduct.get(i).getDescriptions());
-            }
-            System.out.println("       '—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————'\n");
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Nhập phím bất kỳ để tìm kiếm sản phẩm khác              |");
             System.out.println("|     hoặc nhập 'M' để quay lại Menu:                         |");
@@ -258,6 +262,45 @@ public class ProductViewManage {
             }
         }
     }
+
+    public void sortProduct(){
+        while (true) {
+            System.out.println(
+                    "\n                                              .————————————————————————————————————————————————————————.\n" +
+                            "                                              ║              " + ColorConfig.BLUE + "6. Sắp xếp sản phẩm theo giá" + ColorConfig.RESET + "              ║\n" +
+                            "                                              ║--------------------------------------------------------║\n" +
+                            "                                              ║         1. Sắp xếp sản phẩm theo giá tăng dần          ║\n" +
+                            "                                              ║         2. Sắp xếp sản phẩm theo giá giảm dần          ║\n" +
+                            "                                              ║         0. Thoát chương trình                          ║\n" +
+                            "                                              '————————————————————————————————————————————————————————'\n");
+            System.out.println(".---------------" + ColorConfig.BLUE + " 6. Sắp xếp sản phẩm theo giá " + ColorConfig.RESET + "----------------.");
+            System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
+            System.out.print("|     ");
+            int chooseMenu = ValidateInputCustom.validateInt();
+            System.out.println("'-------------------------------------------------------------'");
+            switch (chooseMenu) {
+                case 1:
+                  productController.findAllByPriceAsc();
+                    break;
+                case 2:
+                    productController.findAllByPriceDesc();
+                    break;
+                case 0:
+                    System.err.println("     Bạn đã thoát chương trình!     ");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0-7)!               |" + ColorConfig.RESET + "\n" +
+                            "'-------------------------------------------------------------'\n");
+            }
+        }
+
+    }
+
+
+
+
+
 
     public void selectCategory(List<Category> listSelectCategory) {
         System.out.println(CustomString.STR_ListCategoryView);

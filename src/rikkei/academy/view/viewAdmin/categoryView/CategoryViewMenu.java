@@ -7,7 +7,16 @@ import rikkei.academy.config.validate.ValidateInputCustom;
 public class CategoryViewMenu {
     public CategoryViewMenu() {
         while (true) {
-            System.out.println(CustomStringMenuView.STR_CategoryMenu);
+            System.out.println(
+                    "\n                                              .————————————————————————————————————————————————————————.\n" +
+                    "                                              ║                " + ColorConfig.BLUE + "MENU DANH MỤC SẢN PHẨM" + ColorConfig.RESET + "                  ║\n" +
+                    "                                              ║--------------------------------------------------------║\n" +
+                    "                                              ║        1. Hiển thị danh sách danh mục sản phẩm         ║\n" +
+                    "                                              ║        2. Thêm mới danh mục sản phẩm                   ║\n" +
+                    "                                              ║        3. Sửa danh mục sản phẩm                        ║\n" +
+                    "                                              ║        4. Xóa danh mục sản phẩm                        ║\n" +
+                    "                                              ║        0. Thoát chương trình                           ║\n" +
+                    "                                              '————————————————————————————————————————————————————————'\n");
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
             System.out.print("|     ");
