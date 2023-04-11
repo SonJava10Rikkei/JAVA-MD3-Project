@@ -3,7 +3,7 @@ package rikkei.academy.config.customString;
 public class CustomString {
 
     public static String STR_ListProductView =
-            "\n       .———————————————————————————————————————————————————————————— DANH SÁCH SẢN PHẨM —————————————————————————————————————————————————————————————.\n" +
+                    "\n       .———————————————————————————————————————————————————————————— DANH SÁCH SẢN PHẨM —————————————————————————————————————————————————————————————.\n" +
                     "       ║        |                      |                    |                  |        |                      |                                     ║\n" +
                     "       ║   ID   |        TÊN           |     THƯƠNG HIỆU    |       GIÁ        |   SL   |       DANH MỤC       |               MÔ TẢ                 ║\n" +
                     "       ║        |                      |                    |                  |        |                      |                                     ║\n" +

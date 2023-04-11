@@ -50,7 +50,7 @@ public class HomePageMenu {
                     System.exit(0);
                     break;
                 default:
-                    System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0-7)!               |" + ColorConfig.RESET + "\n" +
+                    System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0-6)!               |" + ColorConfig.RESET + "\n" +
                             "'-------------------------------------------------------------'\n");
             }
         }

@@ -7,7 +7,7 @@ import rikkei.academy.controller.UserController;
 import rikkei.academy.dto.request.SignUpDTO;
 import rikkei.academy.dto.response.ResponseMessage;
 import rikkei.academy.model.User;
-import rikkei.academy.view.viewAll.ViewHome;
+import rikkei.academy.view.viewAll.ViewHomeAfterCheck;
 
 import java.util.HashSet;
 import java.util.List;
@@ -143,7 +143,7 @@ public class FormLoginRegister {
                 messenger.getMessenger().equals("Login-Success");
                 System.out.println("|     " + ColorConfig.GREEN + "Đã đăng nhập thành công !" + ColorConfig.RESET + "                               |");
                 System.out.println("'-------------------------------------------------------------'");
-                new ViewHome();
+                new ViewHomeAfterCheck();
                 break;
             }
         }

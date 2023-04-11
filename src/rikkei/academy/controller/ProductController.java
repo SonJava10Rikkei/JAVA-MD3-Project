@@ -49,4 +49,7 @@ public class ProductController {
     public List<Product> findAllByPriceAsc() {
         return productService.findAllByPriceAsc();
     }
+    public List<Product> findAllByPriceDesc(){
+        return productService.findAllByPriceDesc();
+    }
 }

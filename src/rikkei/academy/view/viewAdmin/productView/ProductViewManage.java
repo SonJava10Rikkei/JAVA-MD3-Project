@@ -272,7 +272,7 @@ public class ProductViewManage {
                             "                                              ║         0. Quay về menu                                ║\n" +
                             "                                              '————————————————————————————————————————————————————————'\n");
             System.out.println(".---------------" + ColorConfig.BLUE + " 6. Sắp xếp sản phẩm theo giá " + ColorConfig.RESET + "----------------.");
-            System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
+            System.out.println("|     Mời bạn lựa chọn chức năng :                            |");
             System.out.print("|     ");
             int chooseMenu = ValidateInputCustom.validateInt();
             System.out.println("'-------------------------------------------------------------'");
@@ -281,6 +281,7 @@ public class ProductViewManage {
                     findAllByPriceAsc();
                     break;
                 case 2:
+                    findAllByPriceDesc();
                     break;
                 case 0:
                     new HomePageMenu();
@@ -307,6 +308,26 @@ public class ProductViewManage {
                     productController.findAllByPriceAsc().get(i).getQuantity(),
                     categoriesString,
                     productController.findAllByPriceAsc().get(i).getDescriptions());
+        }
+        System.out.println("       '—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————'\n");
+        productController.getListProduct();
+    }
+
+    public void findAllByPriceDesc() {
+        System.out.println(CustomString.STR_ListProductView);
+        for (int i = 0; i < productController.findAllByPriceDesc().size(); i++) {
+            Product product = productController.findAllByPriceDesc().get(i);
+            List<String> categories = product.getCategories().stream().map(Category::getNameCategory).collect(Collectors.toList());
+            String categoriesString = String.join(", ", categories);
+            String formatPrice = numberFormat.format(productController.findAllByPriceDesc().get(i).getProductPrice());
+            System.out.printf("       ║   %-2d   |    %-15s   |      %-10s    |    %12s  |   %-2d   |    %-15s   |   %-33s ║\n",
+                    productController.findAllByPriceDesc().get(i).getProductId(),
+                    productController.findAllByPriceDesc().get(i).getProductName(),
+                    productController.findAllByPriceDesc().get(i).getProductBrand(),
+                    formatPrice,
+                    productController.findAllByPriceDesc().get(i).getQuantity(),
+                    categoriesString,
+                    productController.findAllByPriceDesc().get(i).getDescriptions());
         }
         System.out.println("       '—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————'\n");
         productController.getListProduct();

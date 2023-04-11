@@ -1,26 +1,22 @@
 package rikkei.academy.view.viewAll;
 
-import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.controller.UserController;
 import rikkei.academy.model.User;
 import rikkei.academy.model.role.RoleName;
-import rikkei.academy.view.viewAdmin.categoryView.CategoryViewManage;
-import rikkei.academy.view.viewAdmin.productView.ProductViewManage;
-import rikkei.academy.view.viewAll.viewLoginRegister.FormLoginRegister;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewHome {
+public class ViewHomeAfterCheck {
     UserController userController = new UserController();
     User currenUser = userController.getCurrenUser();
     List<User> userList = userController.getUserList();
 
     RoleName roleName = new ArrayList<>(currenUser.getRoles()).get(0).getRoleName();
 
-    public ViewHome() {
+    public ViewHomeAfterCheck() {
         switch (roleName) {
             case ADMIN:
                 menuAdmin();
