@@ -7,6 +7,7 @@ import rikkei.academy.controller.UserController;
 import rikkei.academy.dto.request.SignUpDTO;
 import rikkei.academy.dto.response.ResponseMessage;
 import rikkei.academy.model.User;
+import rikkei.academy.view.viewAll.HomePageMenu;
 import rikkei.academy.view.viewAll.ViewHomeAfterCheck;
 
 import java.util.HashSet;

@@ -10,7 +10,6 @@ private String nameCategory;
 
     public Category() {
     }
-
     public Category(int id, String nameCategory) {
         this.id = id;
         this.nameCategory = nameCategory;

@@ -1,10 +1,16 @@
 package rikkei.academy.view.viewAll;
 
+import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.controller.UserController;
 import rikkei.academy.model.User;
 import rikkei.academy.model.role.RoleName;
-
+import rikkei.academy.view.viewAdmin.categoryView.CategoryViewManage;
+import rikkei.academy.view.viewAdmin.categoryView.CategoryViewMenu;
+import rikkei.academy.view.viewAdmin.productView.ProductViewManage;
+import rikkei.academy.view.viewAdmin.productView.ProductViewMenu;
+import rikkei.academy.view.viewAdmin.userManage.ViewUserManage;
+import rikkei.academy.view.viewuser.ViewChangeProFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +18,8 @@ import java.util.List;
 public class ViewHomeAfterCheck {
     UserController userController = new UserController();
     User currenUser = userController.getCurrenUser();
-    List<User> userList = userController.getUserList();
-
     RoleName roleName = new ArrayList<>(currenUser.getRoles()).get(0).getRoleName();
+    List<User> userList = userController.getUserList();
 
     public ViewHomeAfterCheck() {
         switch (roleName) {
@@ -30,212 +35,180 @@ public class ViewHomeAfterCheck {
                 break;
         }
     }
+
     public void menuAdmin() {
-//        while (true){
-//            System.out.println(
-//                    "\n                                              .————————————————————————————————————————————————————————.\n" +
-//                            "                                              ║                     " + ColorConfig.BLUE + "MENU TRANG CHỦ" + ColorConfig.RESET + "                     ║\n" +
-//                            "                                              ║--------------------------------------------------------║\n" +
-//                            "                                              ║              1. Đăng ký                                ║\n" +
-//                            "                                              ║              2. Đăng nhập                              ║\n" +
-//                            "                                              ║              3. Danh mục sản phẩm                      ║\n" +
-//                            "                                              ║              4. Xem tất cả sản phẩm                    ║\n" +
-//                            "                                              ║              5. Tìm kiếm sản phẩm                      ║\n" +
-//                            "                                              ║              6. Sắp xếp sản phẩm theo giá              ║\n" +
-//                            "                                              ║              0. Thoát chương trình                     ║\n" +
-//                            "                                              '————————————————————————————————————————————————————————'\n");
-//            System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
-//            System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
-//            System.out.print("|     ");
-//            int chooseMenu = ValidateInputCustom.validateInt();
-//            System.out.println("'-------------------------------------------------------------'");
-//            switch (chooseMenu) {
-//                case 1:
-//                    new FormLoginRegister().fromRegister();
-//                    break;
-//                case 2:
-//                    new FormLoginRegister().formLogin();
-//                    break;
-//                case 3:
-//                    new CategoryViewManage().showListCategory();
-//                    break;
-//                case 4:
-//                    new ProductViewManage().showListProduct();
-//                    break;
-//                case 5:
-//
-//                    break;
-//                case 0:
-//                    System.err.println("     Bạn đã thoát chương trình!     ");
-//                    System.exit(0);
-//                    break;
-//                default:
-//                    System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0-7)!               |" + ColorConfig.RESET + "\n" +
-//                            "'-------------------------------------------------------------'\n");
-//            }
-//            break;
-//        }
-
-        System.out.println("*****************WELCOME*************************");
-        System.out.println("Hello: " + roleName + " : " + currenUser.getName());
-        System.out.println("1: Log Out");
-        System.out.println("2: User manage");
-        System.out.println("3: Show list user");
-        System.out.println("4: Category manage");
-        System.out.println("5: Video manage");
-        System.out.println("6: Series Video manage");
-
-
-        int choice = ValidateInputCustom.validateInt();
-
-        switch (choice) {
-            case 1:
-                userController.logOut();
-//                new ViewMainMenu().menu();
-                return;
-            case 2:
-                formUserManage();
-                break;
-            case 3:
-                formShowListUser();
-                break;
-            case 4:
-//                new ViewCategory().menuCategory();
-                break;
-            case 5:
-//                new ViewVideo().menuVideo();
-                break;
-            case 6:
-//                new ViewSeriesFilm().seriesMenu();
-                break;
-            default:
-                System.out.println("Invalid choice");
+        while (true) {
+            System.out.println(
+                    "\n                                               Xin chào : " + ColorConfig.PURPLE + "" + roleName + "" + ColorConfig.RESET + " : " + ColorConfig.PURPLE + "" + currenUser.getName() + "" + ColorConfig.RESET +
+                            "\n                                              .————————————————————————————————————————————————————————.\n" +
+                            "                                              ║                      " + ColorConfig.BLUE + "MENU ADMIN" + ColorConfig.RESET + "                        ║\n" +
+                            "                                              ║--------------------------------------------------------║\n" +
+                            "                                              ║              1. Đăng xuất                              ║\n" +
+                            "                                              ║              2. Menu quản lý danh mục                  ║\n" +
+                            "                                              ║              3. Menu quản lý sản phẩm                  ║\n" +
+                            "                                              ║              4. Menu quản lý đơn hàng                  ║\n" +
+                            "                                              ║              5. Menu quản lý người dùng                ║\n" +
+                            "                                              ║              6. Hiển thị danh sách người dùng          ║\n" +
+                            "                                              ║              0. Thoát chương trình                     ║\n" +
+                            "                                              '————————————————————————————————————————————————————————'\n");
+            System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
+            System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
+            System.out.print("|     ");
+            int chooseMenu = ValidateInputCustom.validateInt();
+            System.out.println("'-------------------------------------------------------------'");
+            switch (chooseMenu) {
+                case 1:
+                    userController.logOut();
+                    new HomePageMenu();
+                    break;
+                case 2:
+                    new CategoryViewMenu();
+                    break;
+                case 3:
+                    new ProductViewMenu();
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    new ViewUserManage();
+                    break;
+                case 6:
+                    formShowListUser();
+                    break;
+                case 0:
+                    System.err.println("     Bạn đã thoát chương trình!     ");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0-6)!               |" + ColorConfig.RESET + "\n" +
+                            "'-------------------------------------------------------------'\n");
+            }
         }
-        menuAdmin();
     }
 
     private void menuPm() {
-        System.out.println("*****************WELCOME*************************");
-        System.out.println("Hello: " + roleName + " : " + currenUser.getName());
-        System.out.println("1: Log Out");
-        System.out.println("2: User manage");
-        System.out.println("3: Show list user");
-        System.out.println("4: Category manage");
-        System.out.println("5: Video manage");
-        System.out.println("6: Series Video manage");
-
-
-        int choice = ValidateInputCustom.validateInt();
-        switch (choice) {
-            case 1:
-                userController.logOut();
-//                new ViewMainMenu().menu();
-                return;
-            case 2:
-                formUserManage();
-                break;
-            case 3:
-                formShowListUser();
-                break;
-            case 4:
-//                new ViewCategory().menuCategory();
-                break;
-            case 5:
-//                new ViewVideo().menuVideo();
-                break;
-            case 6:
-//                new ViewSeriesFilm().seriesMenu();
-                break;
-            default:
-                System.out.println("Invalid choice");
+        while (true) {
+            System.out.println(
+                    "\n                                               Xin chào : " + ColorConfig.PURPLE + "" + roleName + "" + ColorConfig.RESET + " : " + ColorConfig.PURPLE + "" + currenUser.getName() + "" + ColorConfig.RESET +
+                            "\n                                              .————————————————————————————————————————————————————————.\n" +
+                            "                                              ║                       " + ColorConfig.BLUE + "MENU PM" + ColorConfig.RESET + "                          ║\n" +
+                            "                                              ║--------------------------------------------------------║\n" +
+                            "                                              ║              1. Đăng xuất                              ║\n" +
+                            "                                              ║              2. Menu quản lý danh mục                  ║\n" +
+                            "                                              ║              3. Menu quản lý sản phẩm                  ║\n" +
+                            "                                              ║              4. Menu quản lý đơn hàng                  ║\n" +
+                            "                                              ║              5. Menu quản lý người dùng                ║\n" +
+                            "                                              ║              0. Thoát chương trình                     ║\n" +
+                            "                                              '————————————————————————————————————————————————————————'\n");
+            System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
+            System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
+            System.out.print("|     ");
+            int chooseMenu = ValidateInputCustom.validateInt();
+            System.out.println("'-------------------------------------------------------------'");
+            switch (chooseMenu) {
+                case 1:
+                    userController.logOut();
+                    new HomePageMenu();
+                    break;
+                case 2:
+                    new CategoryViewMenu();
+                    break;
+                case 3:
+                    new ProductViewMenu();
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    new ViewUserManage();
+                    break;
+                case 0:
+                    System.err.println("     Bạn đã thoát chương trình!     ");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0-5)!               |" + ColorConfig.RESET + "\n" +
+                            "'-------------------------------------------------------------'\n");
+            }
         }
-        menuPm();
 
     }
 
 
     public void menuUser() {
-        System.out.println("*****************WELCOME*************************");
-        System.out.println("Hello: " + currenUser.getName());
-        System.out.println("1: Log Out");
-        System.out.println("2: Your Profile");
-        System.out.println("3: Change password");
-        System.out.println("4: Show list Category");
-        System.out.println("5: Show list Video");
-        System.out.println("6: Show video with category");
-        System.out.println("7: Top View Video");
-        System.out.println("8: Show phim lẻ");
-        System.out.println("9: Show phim bộ");
-        System.out.println("10: Search Video by name");
-        System.out.println("11: Search Video by category");
-        System.out.println("12: Details Video");
-        System.out.println("13: Top Video by NSX");
-        System.out.println("14: Top Like Video");
-
-        int choice = ValidateInputCustom.validateInt();
-
-        switch (choice) {
-            case 1:
-                userController.logOut();
-//                new ViewMainMenu().menu();
-                return;
-            case 2:
-//                new ViewChangeProFile().menuProFile();
-                break;
-            case 3:
-//                new ViewChangeProFile().formChangePassword();
-                break;
-            case 4:
-//                new ViewCategory().formShowListCategory();
-                break;
-            case 5:
-//                new ViewVideo().formShowListVideo();
-                break;
-            case 6:
-//                new ViewVideo().formVideoWithCategory();
-                break;
-            case 7:
-//                new ViewVideo().formTopViewVideo();
-                break;
-            case 8:
-//                new ViewVideo().formShowFilm();
-                break;
-            case 9:
-//                new ViewVideo().formShowSeriesFilm();
-                break;
-            case 10:
-//                new ViewVideo().formSearchFilmWithName();
-                break;
-            case 11:
-//                new ViewVideo().formVideoWithCategory();
-                break;
-            case 12:
-//                new ViewVideo().formLikeVideo();
-                break;
-            case 13:
-//                new ViewVideo().formVideoByDate();
-                break;
-            case 14:
-//                new ViewVideo().formTopLikeVideo();
-                break;
-            default:
-                System.out.println("Invalid choice");
+        while (true) {
+            System.out.println(
+                    "\n                                               Xin chào : " + ColorConfig.PURPLE + "" + currenUser.getName() + "" + ColorConfig.RESET +
+                            "\n                                              .————————————————————————————————————————————————————————.\n" +
+                            "                                              ║                       " + ColorConfig.BLUE + "MENU USER" + ColorConfig.RESET + "                        ║\n" +
+                            "                                              ║--------------------------------------------------------║\n" +
+                            "                                              ║              1. Đăng xuất                              ║\n" +
+                            "                                              ║              2. Thông tin của bạn                      ║\n" +
+                            "                                              ║              3. Thay đổi mật khẩu                      ║\n" +
+                            "                                              ║              4. Hiển thị danh mục sản phẩm             ║\n" +
+                            "                                              ║              5. Hiển thị danh sách sản phẩm            ║\n" +
+                            "                                              ║              6. Tìm kiếm sản phẩm                      ║\n" +
+                            "                                              ║              7. Sắp xếp sản phẩm                       ║\n" +
+                            "                                              ║              8. Mua sản phẩm                           ║\n" +
+                            "                                              ║              0. Thoát chương trình                     ║\n" +
+                            "                                              '————————————————————————————————————————————————————————'\n");
+            System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
+            System.out.println("|     Mời bạn lựa chọn Menu :                                 |");
+            System.out.print("|     ");
+            int chooseMenu = ValidateInputCustom.validateInt();
+            System.out.println("'-------------------------------------------------------------'");
+            switch (chooseMenu) {
+                case 1:
+                    userController.logOut();
+                    new HomePageMenu();
+                    break;
+                case 2:
+                    new ViewChangeProFile().menuProFile();
+                    break;
+                case 3:
+                    new ViewChangeProFile().formChangePassword();
+                    break;
+                case 4:
+                    new CategoryViewManage().showListCategory();
+                    break;
+                case 5:
+                    new ProductViewManage().showListProduct();
+                    break;
+                case 6:
+                    new ProductViewManage().searchProductByName();
+                    break;
+                case 7:
+                    new ProductViewManage().sortProduct();
+                    break;
+                case 8:
+                    new ProductViewManage().sortProduct();
+                    break;
+                case 0:
+                    System.err.println("     Bạn đã thoát chương trình!     ");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0-8)!               |" + ColorConfig.RESET + "\n" +
+                            "'-------------------------------------------------------------'\n");
+            }
         }
-        menuUser();
     }
-
-
 
 
     private void formShowListUser() {
-        System.out.printf("%-15s%-15s%-15s%-25s%-15s%s%n", "id", "name", "Username", "email", "password", "Role");
+        System.out.println(
+                "       .—————————————————————————————————————————————————————————— DANH SÁCH NGƯỜI DÙNG ——————————————————————————————————————————————————————————.\n" +
+                        "       ║        |                      |                    |                                           |                    |                    ║\n" +
+                        "       ║   ID   |        TÊN           |    TÊN TÀI KHOẢN   |                   EMAIL                   |      MẬT KHẨU      |   QUYỀN TÀI KHOẢN  ║\n" +
+                        "       ║        |                      |                    |                                           |                    |                    ║\n" +
+                        "       ║------------------------------------------------------------------------------------------------------------------------------------------║");
         for (User user : userList) {
-            System.out.printf("%-15s%-15s%-15s%-25s%-15s%s%n", user.getId(), user.getName(), user.getUsername(), user.getEmail(), user.getPassword(), user.getRoles());
+            System.out.printf("       ║   %-2d   |    %-15s   |      %-10s    |       %-18s                  |      %-10s    |      %-10s    ║\n",
+                    user.getId(), user.getName(), user.getUsername(), user.getEmail(), user.getPassword(), user.getListRole().name());
         }
+        System.out.println("       '——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————'\n");
     }
 
     private void formUserManage() {
-//       new ViewUserManage().menu();
 
     }
 }

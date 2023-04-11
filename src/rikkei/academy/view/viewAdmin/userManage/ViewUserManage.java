@@ -6,13 +6,8 @@ import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.controller.UserController;
 import rikkei.academy.model.User;
 import rikkei.academy.model.role.RoleName;
-import rikkei.academy.view.viewAdmin.categoryView.CategoryViewManage;
-import rikkei.academy.view.viewAdmin.productView.ProductViewManage;
-import rikkei.academy.view.viewAdmin.productView.ProductViewMenu;
 import rikkei.academy.view.viewAll.ViewHomeAfterCheck;
-import rikkei.academy.view.viewAll.viewLoginRegister.FormLoginRegister;
 import rikkei.academy.view.viewuser.ViewChangeProFile;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -43,13 +38,13 @@ public class ViewUserManage {
             System.out.println("'-------------------------------------------------------------'");
             switch (chooseMenu) {
                 case 1:
-                    formChangeRole();
+                    this.formChangeRole();
                     break;
                 case 2:
-                    formBlockUser();
+                    this.formBlockUser();
                     break;
                 case 3:
-                    formDeleteUser();
+                    this.formDeleteUser();
                     break;
                 case 4:
                     new ViewChangeProFile().menuProFile();
@@ -70,19 +65,20 @@ public class ViewUserManage {
 
     private static void listUserManager(List<User> userList) {
         System.out.println(
-                "\n                                            .—————————————————————————————— DANH SÁCH NGƯỜI DÙNG ———————————————————————————————.\n" +
-                        "                                            ║        |                          |                       |                       ║\n" +
-                        "                                            ║   ID   |      TÊN NGƯỜI DÙNG      |    QUYỀN NGƯỜI DÙNG   |      TRẠNG THÁI       ║\n" +
-                        "                                            ║        |                          |                       | (true = chặn # false) ║\n" +
-                        "                                            ║-----------------------------------------------------------------------------------║");
+                        "                                            .——————————————————————————————————————————— DANH SÁCH NGƯỜI DÙNG ———————————————————————————————————————————— .\n" +
+                        "                                            ║        |                          |                          |                       |                       ║\n" +
+                        "                                            ║   ID   |      TÊN NGƯỜI DÙNG      |  TÀI KHOẢN NGƯỜI DÙNG    |    QUYỀN NGƯỜI DÙNG   |      TRẠNG THÁI       ║\n" +
+                        "                                            ║        |                          |                          |                       | (true = chặn # false) ║\n" +
+                        "                                            ║--------------------------------------------------------------------------------------------------------------║");
         userList.forEach(user -> {
-            System.out.printf("                                            ║   %-2d   |      %-15s     |       %-10s      |       %-10s      ║\n",
+            System.out.printf("                                            ║   %-2d   |      %-15s     |     %-15s      |       %-10s      |       %-10s      ║\n",
                     user.getId(),
+                    user.getName(),
                     user.getUsername(),
                     user.getListRole(),
                     user.isStatus());
         });
-        System.out.println("                                            '———————————————————————————————————————————————————————————————————————————————————'\n");
+        System.out.println("                                            '——————————————————————————————————————————————————————————————————————————————————————————————————————————————'\n");
     }
 
     private void formChangeRole() {
@@ -261,6 +257,7 @@ public class ViewUserManage {
         }
 
     }
+
 
     public static void main(String[] args) {
         new ViewUserManage();

@@ -1,17 +1,14 @@
 package rikkei.academy.view.viewuser;
 
 import rikkei.academy.config.ColorConfig;
-import rikkei.academy.config.Config;
 import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.controller.UserController;
 import rikkei.academy.model.User;
 import rikkei.academy.service.user.IUserService;
 import rikkei.academy.service.user.UserServiceIMPL;
-import rikkei.academy.view.viewAdmin.userManage.ViewUserManage;
 import rikkei.academy.view.viewAll.ViewHomeAfterCheck;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 
 public class ViewChangeProFile {
@@ -56,10 +53,10 @@ public class ViewChangeProFile {
     private void formChangeName() {
         User user = userController.getCurrenUser();
         System.out.println(".-----------------" + ColorConfig.BLUE + " 1. Thay đổi tên của bạn " + ColorConfig.RESET + "------------------.");
-        String name;
         System.out.print(
                 "|     Nhập tên mới của bạn :                                  |\n" +
                         "|     ");
+        String name;
         while (true) {
             name = ValidateInputCustom.getString();
             if (ValidateInputCustom.validateName(name))
@@ -72,17 +69,18 @@ public class ViewChangeProFile {
         }
         user.setName(name);
         userController.upDateProFile(user);
-
         System.out.println("|     " + ColorConfig.GREEN + "Thay đổi tên thành công !" + ColorConfig.RESET + "                               |");
         System.out.println("'-------------------------------------------------------------'\n");
         userController.getUserList();
-        currentUser = userController.getCurrenUser();
         menuProFile();
     }
 
     private void formChangeEmail() {
         User user = userController.getCurrenUser();
         System.out.println(".-----------------" + ColorConfig.BLUE + " 2. Thay đổi enail của bạn " + ColorConfig.RESET + "----------------.");
+        System.out.print(
+                "|     Nhập email mới của bạn :                                  |\n" +
+                        "|     ");
         String email;
         while (true) {
             email = ValidateInputCustom.getString();
@@ -95,14 +93,14 @@ public class ViewChangeProFile {
                                 "|     ");
         }
         if ((!email.equals(user.getEmail())) && userController.existByEmail(email)) {
-            System.out.println("Email_Existed!!!");
+            System.out.println("|     " + ColorConfig.RED + "Email đã tồn tại !" + ColorConfig.RESET + "                                      |");
         } else {
             user.setEmail(email);
             userController.upDateProFile(user);
-            System.out.println("Change Email Success!!!!");
+            System.out.println("|     " + ColorConfig.GREEN + "Thay đổi Email thành công !" + ColorConfig.RESET + "                             |");
+
         }
         userController.getUserList();
-        currentUser = userController.getCurrenUser();
         menuProFile();
 
     }
@@ -110,26 +108,36 @@ public class ViewChangeProFile {
     public void formChangePassword() {
         User user = userController.getCurrenUser();
         System.out.println(".-----------------" + ColorConfig.BLUE + " Thay đổi mật khẩu của bạn " + ColorConfig.RESET + "------------------.");
+        System.out.print(
+                "|     Nhập mật khẩu của bạn :                                   |\n" +
+                        "|     ");
         String password = ValidateInputCustom.getString();
-        if (password.equals(user.getPassword())) ;
-        String newPassword;
-        while (true) {
-            newPassword = ValidateInputCustom.getString();
-            if (!newPassword.matches(ValidateInputCustom.validatePassword))
-                System.out.print(
-                        "|     " + ColorConfig.RED + "Mật khẩu từ 6 đến 10 ký tự: Gồm 1 ký tự viết hoa " + ColorConfig.RESET + "       |\n" +
-                                "|     " + ColorConfig.RED + "và các ký tự thường, " + ColorConfig.RESET + "                                   |\n" +
-                                "|     " + ColorConfig.RED + "Có kí tự số, 1 trong các ký tự đặc biệt sau @$!%*?& " + ColorConfig.RESET + "    |\n" +
-                                "|     " + ColorConfig.RED + "(vidu: Son$93) xin vui lòng nhập lại:" + ColorConfig.RESET + "                   |\n" +
-                                "|     ");
-            else
-                break;
+        if (password.equals(user.getPassword())) {
+            System.out.print(
+                    "|     Nhập mật khẩu mới của bạn :                               |\n" +
+                            "|     ");
+            String newPassword;
+            while (true) {
+                newPassword = ValidateInputCustom.getString();
+                if (!newPassword.matches(ValidateInputCustom.validatePassword))
+                    System.out.print(
+                            "|     " + ColorConfig.RED + "Mật khẩu từ 6 đến 10 ký tự: Gồm 1 ký tự viết hoa " + ColorConfig.RESET + "       |\n" +
+                                    "|     " + ColorConfig.RED + "và các ký tự thường, " + ColorConfig.RESET + "                                   |\n" +
+                                    "|     " + ColorConfig.RED + "Có kí tự số, 1 trong các ký tự đặc biệt sau @$!%*?& " + ColorConfig.RESET + "    |\n" +
+                                    "|     " + ColorConfig.RED + "(vidu: Son$93) xin vui lòng nhập lại:" + ColorConfig.RESET + "                   |\n" +
+                                    "|     ");
+                else
+                    break;
+            }
+            user.setPassword(newPassword);
+            userController.upDateProFile(user);
+            System.out.println("|     " + ColorConfig.GREEN + "Thay đổi mật khẩu thành công !" + ColorConfig.RESET + "                          |");
+            userController.getUserList();
+        } else {
+            System.out.print(
+                    "|     " + ColorConfig.RED + "Sai mật khẩu vui lòng nhập lại !" + ColorConfig.RESET + "                          |\n");
         }
-        user.setPassword(newPassword);
-        userController.upDateProFile(user);
-        System.out.println("Change password Success!!!!!");
-        userController.getUserList();
-        currentUser = userController.getCurrenUser();
+
     }
 
     private void backMenu() {

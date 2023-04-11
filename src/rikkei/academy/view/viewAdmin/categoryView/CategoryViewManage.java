@@ -3,7 +3,6 @@ package rikkei.academy.view.viewAdmin.categoryView;
 import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.Config;
 import rikkei.academy.config.customString.CustomString;
-import rikkei.academy.config.customString.CustomStringMenuView;
 import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.controller.CategoryController;
 import rikkei.academy.model.productModel.Category;

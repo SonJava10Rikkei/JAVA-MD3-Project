@@ -1,9 +1,10 @@
-package rikkei.academy.view.viewAll.viewLoginRegister;
+package rikkei.academy.view.viewAll;
 
 import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.view.viewAdmin.categoryView.CategoryViewManage;
 import rikkei.academy.view.viewAdmin.productView.ProductViewManage;
+import rikkei.academy.view.viewAll.viewLoginRegister.FormLoginRegister;
 
 public class HomePageMenu {
 

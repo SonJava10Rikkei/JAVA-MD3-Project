@@ -8,7 +8,8 @@ import rikkei.academy.controller.CategoryController;
 import rikkei.academy.controller.ProductController;
 import rikkei.academy.model.productModel.Category;
 import rikkei.academy.model.productModel.Product;
-import rikkei.academy.view.viewAll.viewLoginRegister.HomePageMenu;
+import rikkei.academy.view.viewAll.HomePageMenu;
+import rikkei.academy.view.viewAll.ViewHomeAfterCheck;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -256,7 +257,7 @@ public class ProductViewManage {
             String backMenu = Config.scanner().nextLine();
             System.out.println("'-------------------------------------------------------------'\n");
             if (backMenu.equalsIgnoreCase("m")) {
-                new HomePageMenu();
+                new ViewHomeAfterCheck();
             }
         }
     }
