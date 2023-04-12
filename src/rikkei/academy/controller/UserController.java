@@ -5,8 +5,11 @@ import rikkei.academy.config.PathConfig;
 import rikkei.academy.dto.request.SignUpDTO;
 import rikkei.academy.dto.response.ResponseMessage;
 import rikkei.academy.model.User;
+import rikkei.academy.model.order.Cart;
 import rikkei.academy.model.role.Role;
 import rikkei.academy.model.role.RoleName;
+import rikkei.academy.service.oderService.CartServiceIMPL;
+import rikkei.academy.service.oderService.ICart;
 import rikkei.academy.service.role.IRoleService;
 import rikkei.academy.service.role.RoleServiceIMPL;
 import rikkei.academy.service.user.IUserService;
@@ -20,6 +23,7 @@ import java.util.Set;
 public class UserController {
     private IUserService userService = new UserServiceIMPL();
     private IRoleService roleService = new RoleServiceIMPL();
+    private ICart cartService = new CartServiceIMPL();
 
     public List<User> getUserList() {
         return userService.findAll();
@@ -54,7 +58,9 @@ public class UserController {
                 signUpDTO.getPassword(),
                 roleSet
         );
+        Cart cart = new Cart(signUpDTO.getId(), user);
         userService.save(user);
+        cartService.save(cart);
         // Hiển thị danh sách user
 //        System.out.println(getUserList());
         return new ResponseMessage("Create success");

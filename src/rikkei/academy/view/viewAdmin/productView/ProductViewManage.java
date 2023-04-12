@@ -63,7 +63,7 @@ public class ProductViewManage {
             } else {
                 id = listProduct.get(listProduct.size() - 1).getProductId() + 1;
             }
-            System.out.println(".-------------------" + ColorConfig.BLUE + " 2. Thêm mới sản phẩm " + ColorConfig.RESET + "--------------------.");
+            System.out.println(".--------------------" + ColorConfig.BLUE + " Thêm mới sản phẩm " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Nhập tên của sản phẩm mới :                             |");
             System.out.print("|     ");
             String name = ValidateInputCustom.getString();
@@ -104,7 +104,7 @@ public class ProductViewManage {
 
     public void updateProduct() {
         while (true) {
-            System.out.println(".---------------------" + ColorConfig.BLUE + " 3. Sửa sản phẩm " + ColorConfig.RESET + "-----------------------.");
+            System.out.println(".----------------------" + ColorConfig.BLUE + " Sửa sản phẩm " + ColorConfig.RESET + "-------------------------.");
             System.out.println("|     Nhập ID của sản phẩm bạn muốn sửa:                      |");
             System.out.print("|     ");
             int id = ValidateInputCustom.validateInt();
@@ -166,8 +166,7 @@ public class ProductViewManage {
 
     public void deleteCategory() {
         while (true) {
-            System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
-            System.out.println(".-----------------------" + ColorConfig.BLUE + " 4. Xóa sản ph " + ColorConfig.RESET + "-----------------------.");
+            System.out.println(".-----------------------" + ColorConfig.BLUE + " Xóa sản phẩm " + ColorConfig.RESET + "------------------------.");
             System.out.println("|     Nhập ID của sản phẩm bạn muốn xóa:                      |");
             System.out.print("|     ");
             int targetId = ValidateInputCustom.validateInt();
@@ -220,7 +219,7 @@ public class ProductViewManage {
 
     public void searchProductByName() {
         while (true) {
-            System.out.println(".-------------------" + ColorConfig.BLUE + " 5. Tìm kiếm sản phẩm " + ColorConfig.RESET + "--------------------.");
+            System.out.println(".--------------------" + ColorConfig.BLUE + " Tìm kiếm sản phẩm " + ColorConfig.RESET + "----------------------.");
             System.out.print(
                     "|     Nhập tên sản phẩm cần tìm kiếm:                         |\n" +
                             "|     ");
@@ -287,7 +286,7 @@ public class ProductViewManage {
                 case 0:
                     new HomePageMenu();
                 default:
-                    System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0-7)!               |" + ColorConfig.RESET + "\n" +
+                    System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0-2)!               |" + ColorConfig.RESET + "\n" +
                             "'-------------------------------------------------------------'\n");
             }
         }

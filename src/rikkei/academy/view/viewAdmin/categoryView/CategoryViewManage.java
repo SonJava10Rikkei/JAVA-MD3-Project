@@ -12,13 +12,14 @@ import java.util.List;
 public class CategoryViewManage {
     CategoryController categoryController = new CategoryController();
     List<Category> listCategory = categoryController.getListCategory();
+
     public void showListCategory() {
         System.out.println(CustomString.STR_ListCategoryView);
         for (int i = 0; i < listCategory.size(); i++) {
             if (listCategory.size() != 0) {
                 System.out.printf("                                                  ║   %-2d   |   %-33s ║\n", listCategory.get(i).getId(), listCategory.get(i).getNameCategory());
             } else {
-                System.err.println("|     Danh mục hiện đang trống hãy thêm danh mục mới!         |");
+                System.out.println("|     " + ColorConfig.RED + "Danh mục hiện đang trống hãy thêm danh mục mới!" + ColorConfig.RESET + "         |");
             }
         }
         System.out.print("                                                  '——————————————————————————————————————————————'\n" +
@@ -50,6 +51,7 @@ public class CategoryViewManage {
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
             System.out.println("|     Nhập phím bất kỳ để tiếp tục thêm danh mục sản phẩm,    |");
             System.out.println("|     hoặc nhập 'M' để quay lại Menu:                         |");
+            System.out.print("|     ");
             String backMenu = Config.scanner().nextLine();
             System.out.println("'-------------------------------------------------------------'\n");
             if (backMenu.equalsIgnoreCase("m")) {
@@ -156,5 +158,4 @@ public class CategoryViewManage {
             }
         }
     }
-
 }

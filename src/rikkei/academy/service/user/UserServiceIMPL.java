@@ -15,11 +15,7 @@ public class UserServiceIMPL implements IUserService {
 
     @Override
     public List<User> findAll() {
-        new Config<User>().writeToFile(PathConfig.PATH_USER, userList);
-        List<User> list = new ArrayList<>();
-        list.add(getCurrenUser());
-        new Config<User>().writeToFile(PathConfig.PATH_USER_PRINCIPAL, list);
-        return userList;
+            return userList;
     }
 
 
@@ -101,16 +97,6 @@ public class UserServiceIMPL implements IUserService {
 
     @Override
     public List<User> findByRole(RoleName... roleNames) {
-//        List<User> find = new ArrayList<>();
-//        for (User user: userList) {
-//            for (RoleName role: roleNames) {
-//                if (user.getListRole() == role){
-//                    find.add(user);
-//                }
-//            }
-//
-//        }
-//        return find;
         return null;
     }
 
@@ -123,12 +109,17 @@ public class UserServiceIMPL implements IUserService {
 
     @Override
     public void changeProFile(User user) {
+        List<User> loginUser = new ArrayList<>();
         User user1 = findByUserName(user.getUsername());
         user1.setName(user.getName());
         user1.setUsername(user.getUsername());
         user1.setEmail(user.getEmail());
         user1.setPassword(user.getPassword());
-        new Config<User>().writeToFile(PathConfig.PATH_USER_PRINCIPAL, userList);
-
+        loginUser.add(user1);
+        new Config<User>().writeToFile(PathConfig.PATH_USER, userList);
+        List<User> list = new ArrayList<>();
+        list.add(getCurrenUser());
+        new Config<User>().writeToFile(PathConfig.PATH_USER_PRINCIPAL, list);
+        new Config<User>().writeToFile(PathConfig.PATH_USER_PRINCIPAL, loginUser);
     }
 }

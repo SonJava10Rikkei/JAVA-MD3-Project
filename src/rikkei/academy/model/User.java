@@ -1,11 +1,13 @@
 package rikkei.academy.model;
 
+import rikkei.academy.model.order.Order;
 import rikkei.academy.model.role.Role;
 import rikkei.academy.model.role.RoleName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class User implements Serializable {
@@ -18,13 +20,13 @@ public class User implements Serializable {
     private String avatar;
     private boolean status;
     private Set<Role> roles = new HashSet<>();
+    private List<Order> orders;
 
     public User() {
     }
 
 
-
-    public User(int id, String name, String username, String email, String password, String avatar, boolean status, Set<Role> roles) {
+    public User(int id, String name, String username, String email, String password, String avatar, boolean status, Set<Role> roles, List<Order> orders) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -33,6 +35,15 @@ public class User implements Serializable {
         this.avatar = avatar;
         this.status = status;
         this.roles = roles;
+        this.orders = orders;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     public User(int id, String name, String username, String email, String password, Set<Role> roleSet) {
@@ -44,7 +55,7 @@ public class User implements Serializable {
         this.roles = roleSet;
     }
 
-    public RoleName getListRole(){
+    public RoleName getListRole() {
         return new ArrayList<>(this.roles).get(0).getRoleName();
     }
 
@@ -123,6 +134,7 @@ public class User implements Serializable {
                 ", avatar='" + avatar + '\'' +
                 ", status=" + status +
                 ", roles=" + roles +
+                ", orders=" + orders +
                 '}';
     }
 }

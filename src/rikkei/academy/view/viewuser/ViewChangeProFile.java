@@ -51,7 +51,6 @@ public class ViewChangeProFile {
     }
 
     private void formChangeName() {
-        User user = userController.getCurrenUser();
         System.out.println(".-----------------" + ColorConfig.BLUE + " 1. Thay đổi tên của bạn " + ColorConfig.RESET + "------------------.");
         System.out.print(
                 "|     Nhập tên mới của bạn :                                  |\n" +
@@ -67,8 +66,8 @@ public class ViewChangeProFile {
                                 "|     " + ColorConfig.RED + "Xin vui lòng nhập lại:" + ColorConfig.RESET + "                                  |\n" +
                                 "|     ");
         }
-        user.setName(name);
-        userController.upDateProFile(user);
+        currentUser.setName(name);
+        userController.upDateProFile(currentUser);
         System.out.println("|     " + ColorConfig.GREEN + "Thay đổi tên thành công !" + ColorConfig.RESET + "                               |");
         System.out.println("'-------------------------------------------------------------'\n");
         userController.getUserList();
@@ -76,7 +75,6 @@ public class ViewChangeProFile {
     }
 
     private void formChangeEmail() {
-        User user = userController.getCurrenUser();
         System.out.println(".-----------------" + ColorConfig.BLUE + " 2. Thay đổi enail của bạn " + ColorConfig.RESET + "----------------.");
         System.out.print(
                 "|     Nhập email mới của bạn :                                  |\n" +
@@ -92,11 +90,11 @@ public class ViewChangeProFile {
                                 "|     " + ColorConfig.RED + "(vidu: danhson@gmail.com) Hãy nhập lại:" + ColorConfig.RESET + "                 |\n" +
                                 "|     ");
         }
-        if ((!email.equals(user.getEmail())) && userController.existByEmail(email)) {
+        if ((!email.equals(currentUser.getEmail())) && userController.existByEmail(email)) {
             System.out.println("|     " + ColorConfig.RED + "Email đã tồn tại !" + ColorConfig.RESET + "                                      |");
         } else {
-            user.setEmail(email);
-            userController.upDateProFile(user);
+            currentUser.setEmail(email);
+            userController.upDateProFile(currentUser);
             System.out.println("|     " + ColorConfig.GREEN + "Thay đổi Email thành công !" + ColorConfig.RESET + "                             |");
 
         }
@@ -106,13 +104,12 @@ public class ViewChangeProFile {
     }
 
     public void formChangePassword() {
-        User user = userController.getCurrenUser();
         System.out.println(".-----------------" + ColorConfig.BLUE + " Thay đổi mật khẩu của bạn " + ColorConfig.RESET + "------------------.");
         System.out.print(
                 "|     Nhập mật khẩu của bạn :                                   |\n" +
                         "|     ");
         String password = ValidateInputCustom.getString();
-        if (password.equals(user.getPassword())) {
+        if (password.equals(currentUser.getPassword())) {
             System.out.print(
                     "|     Nhập mật khẩu mới của bạn :                               |\n" +
                             "|     ");
@@ -129,8 +126,8 @@ public class ViewChangeProFile {
                 else
                     break;
             }
-            user.setPassword(newPassword);
-            userController.upDateProFile(user);
+            currentUser.setPassword(newPassword);
+            userController.upDateProFile(currentUser);
             System.out.println("|     " + ColorConfig.GREEN + "Thay đổi mật khẩu thành công !" + ColorConfig.RESET + "                          |");
             userController.getUserList();
         } else {

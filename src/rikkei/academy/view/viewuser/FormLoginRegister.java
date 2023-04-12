@@ -1,4 +1,4 @@
-package rikkei.academy.view.viewAll.viewLoginRegister;
+package rikkei.academy.view.viewuser;
 
 import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.Config;
@@ -7,6 +7,7 @@ import rikkei.academy.controller.UserController;
 import rikkei.academy.dto.request.SignUpDTO;
 import rikkei.academy.dto.response.ResponseMessage;
 import rikkei.academy.model.User;
+import rikkei.academy.model.order.Cart;
 import rikkei.academy.view.viewAll.HomePageMenu;
 import rikkei.academy.view.viewAll.ViewHomeAfterCheck;
 
@@ -25,7 +26,7 @@ public class FormLoginRegister {
         } else {
             id = userList.get(userList.size() - 1).getId() + 1;
         }
-        System.out.println(".-----------" + ColorConfig.BLUE + " 1. Điền thông tin đăng ký tài khoản " + ColorConfig.RESET + "-------------.");
+        System.out.println(".------------" + ColorConfig.BLUE + " Điền thông tin đăng ký tài khoản " + ColorConfig.RESET + "---------------.");
         System.out.print(
                 "|     Nhập tên của bạn :                                      |\n" +
                         "|     ");
@@ -117,7 +118,7 @@ public class FormLoginRegister {
     }
 
     public void formLogin() {
-        System.out.println(".---------------" + ColorConfig.BLUE + " 2. Điền thông tin đăng nhập " + ColorConfig.RESET + "-----------------.");
+        System.out.println(".----------------" + ColorConfig.BLUE + " Điền thông tin đăng nhập " + ColorConfig.RESET + "-------------------.");
         System.out.print(
                 "|     Nhập tên tài khoản đăng nhập:                           |\n" +
                         "|     ");
@@ -150,13 +151,13 @@ public class FormLoginRegister {
         }
     }
 
-    public void showListUser() {
-        System.out.println(userController.getUserList());
-        System.out.println("Enter back to return Navbar: ");
-        String back = Config.scanner().nextLine();
-        if (back.equalsIgnoreCase("back")) {
-            new HomePageMenu();
-        }
-    }
+//    public void showListUser() {
+//        System.out.println(userController.getUserList());
+//        System.out.println("Enter back to return Navbar: ");
+//        String back = Config.scanner().nextLine();
+//        if (back.equalsIgnoreCase("back")) {
+//            new HomePageMenu();
+//        }
+//    }
 }
 

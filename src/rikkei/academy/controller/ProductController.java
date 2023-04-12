@@ -30,17 +30,6 @@ public class ProductController {
     public void deleteProduct(int id) {
         productService.deleteById(id);
     }
-    public List<Product> showProductWithCategory(int id) {
-        List<Product> productList = new ArrayList<>();
-        for (Product product : productService.findAll()) {
-            for (Category category : product.getCategories()) {
-                if (id == category.getId()) {
-                    productList.add(product);
-                }
-            }
-        }
-        return productList;
-    }
 
     public List<Product> searchProductByName(String name) {
         return productService.searchProductByName(name);
