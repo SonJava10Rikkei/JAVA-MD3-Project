@@ -264,14 +264,14 @@ public class ProductViewManage {
     public void sortProduct() {
         while (true) {
             System.out.println(
-                    "\n                                              .————————————————————————————————————————————————————————.\n" +
-                            "                                              ║              " + ColorConfig.BLUE + "6. Sắp xếp sản phẩm theo giá" + ColorConfig.RESET + "              ║\n" +
+                    "                                              .————————————————————————————————————————————————————————.\n" +
+                            "                                              ║               " + ColorConfig.BLUE + " Sắp xếp sản phẩm theo giá" + ColorConfig.RESET + "               ║\n" +
                             "                                              ║--------------------------------------------------------║\n" +
                             "                                              ║         1. Sắp xếp sản phẩm theo giá tăng dần          ║\n" +
                             "                                              ║         2. Sắp xếp sản phẩm theo giá giảm dần          ║\n" +
                             "                                              ║         0. Quay về menu                                ║\n" +
                             "                                              '————————————————————————————————————————————————————————'\n");
-            System.out.println(".---------------" + ColorConfig.BLUE + " 6. Sắp xếp sản phẩm theo giá " + ColorConfig.RESET + "----------------.");
+            System.out.println(".-----------------" + ColorConfig.BLUE + "Sắp xếp sản phẩm theo giá " + ColorConfig.RESET + "------------------.");
             System.out.println("|     Mời bạn lựa chọn chức năng :                            |");
             System.out.print("|     ");
             int chooseMenu = ValidateInputCustom.validateInt();
@@ -284,7 +284,7 @@ public class ProductViewManage {
                     findAllByPriceDesc();
                     break;
                 case 0:
-                    new HomePageMenu();
+                    new ViewHomeAfterCheck();
                 default:
                     System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0-2)!               |" + ColorConfig.RESET + "\n" +
                             "'-------------------------------------------------------------'\n");

@@ -11,6 +11,7 @@ import rikkei.academy.view.viewAdmin.productView.ProductViewManage;
 import rikkei.academy.view.viewAdmin.productView.ProductViewMenu;
 import rikkei.academy.view.viewAdmin.userManage.ViewUserManage;
 import rikkei.academy.view.viewuser.ViewChangeProFile;
+import rikkei.academy.view.viewuser.orderUser.CartViewMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,14 +142,14 @@ public class ViewHomeAfterCheck {
                             "\n                                              .————————————————————————————————————————————————————————.\n" +
                             "                                              ║                       " + ColorConfig.BLUE + "MENU USER" + ColorConfig.RESET + "                        ║\n" +
                             "                                              ║--------------------------------------------------------║\n" +
-                            "                                              ║              1. Đăng xuất                              ║\n" +
-                            "                                              ║              2. Thông tin của bạn                      ║\n" +
-                            "                                              ║              3. Thay đổi mật khẩu                      ║\n" +
-                            "                                              ║              4. Hiển thị danh mục sản phẩm             ║\n" +
-                            "                                              ║              5. Hiển thị danh sách sản phẩm            ║\n" +
-                            "                                              ║              6. Tìm kiếm sản phẩm                      ║\n" +
-                            "                                              ║              7. Sắp xếp sản phẩm                       ║\n" +
-                            "                                              ║              8. Mua sản phẩm                           ║\n" +
+                            "                                              ║              1. Xem tất cả sản phẩm                    ║\n" +
+                            "                                              ║              2. Xem danh mục sản phẩm                  ║\n" +
+                            "                                              ║              3. Tìm kiếm sản phẩm                      ║\n" +
+                            "                                              ║              4. Sắp xếp sản phẩm                       ║\n" +
+                            "                                              ║              5. Mua sản phẩm                           ║\n" +
+                            "                                              ║              6. Đăng xuất                              ║\n" +
+                            "                                              ║              7. Thông tin của bạn                      ║\n" +
+                            "                                              ║              8. Thay đổi mật khẩu                      ║\n" +
                             "                                              ║              0. Thoát chương trình                     ║\n" +
                             "                                              '————————————————————————————————————————————————————————'\n");
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
@@ -158,29 +159,29 @@ public class ViewHomeAfterCheck {
             System.out.println("'-------------------------------------------------------------'");
             switch (chooseMenu) {
                 case 1:
+                    new ProductViewManage().showListProduct();
+                    break;
+                case 2:
+                    new CategoryViewManage().showListCategory();
+                    break;
+                case 3:
+                    new ProductViewManage().searchProductByName();
+                    break;
+                case 4:
+                    new ProductViewManage().sortProduct();
+                    break;
+                case 5:
+                    new CartViewMenu();
+                    break;
+                case 6:
                     userController.logOut();
                     new HomePageMenu();
                     break;
-                case 2:
+                case 7:
                     new ViewChangeProFile().menuProFile();
                     break;
-                case 3:
-                    new ViewChangeProFile().formChangePassword();
-                    break;
-                case 4:
-                    new CategoryViewManage().showListCategory();
-                    break;
-                case 5:
-                    new ProductViewManage().showListProduct();
-                    break;
-                case 6:
-                    new ProductViewManage().searchProductByName();
-                    break;
-                case 7:
-                    new ProductViewManage().sortProduct();
-                    break;
                 case 8:
-                    new ProductViewManage().sortProduct();
+                    new ViewChangeProFile().formChangePassword();
                     break;
                 case 0:
                     System.err.println("     Bạn đã thoát chương trình!     ");

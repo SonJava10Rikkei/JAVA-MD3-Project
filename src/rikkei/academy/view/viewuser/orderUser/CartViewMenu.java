@@ -8,7 +8,6 @@ import rikkei.academy.view.viewAll.ViewHomeAfterCheck;
 
 public class CartViewMenu {
     UserController userController = new UserController();
-
     User loginUser = userController.getCurrenUser();
 
     public CartViewMenu() {
@@ -35,11 +34,11 @@ public class CartViewMenu {
                     new CartViewManage().showCart(loginUser);
                     break;
                 case 2:
-                    new CartViewManage().addToCartById(loginUser);
+                    new CartViewManage().addProductToCartById(loginUser);
                     break;
                 case 3:
 
-
+                    new CartViewManage().removeProductfromCartById(loginUser);
                     break;
                 case 4:
 
@@ -47,7 +46,7 @@ public class CartViewMenu {
                     break;
                 case 5:
 
-
+                    new CartViewManage().Payment(loginUser);
                     break;
                 case 0:
                     System.out.println("Bạn đã quay về Menu !");

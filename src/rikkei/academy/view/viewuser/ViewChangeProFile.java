@@ -96,8 +96,8 @@ public class ViewChangeProFile {
             currentUser.setEmail(email);
             userController.upDateProFile(currentUser);
             System.out.println("|     " + ColorConfig.GREEN + "Thay đổi Email thành công !" + ColorConfig.RESET + "                             |");
-
-        }
+            System.out.println("'-------------------------------------------------------------'\n");
+                    }
         userController.getUserList();
         menuProFile();
 
@@ -128,7 +128,8 @@ public class ViewChangeProFile {
             }
             currentUser.setPassword(newPassword);
             userController.upDateProFile(currentUser);
-            System.out.println("|     " + ColorConfig.GREEN + "Thay đổi mật khẩu thành công !" + ColorConfig.RESET + "                          |");
+            System.out.println("|     " + ColorConfig.GREEN + "Thay đổi mật khẩu thành công !" + ColorConfig.RESET + "                           |");
+            System.out.println("'-------------------------------------------------------------'\n");
             userController.getUserList();
         } else {
             System.out.print(
