@@ -23,6 +23,7 @@ public class ViewHomeAfterCheck {
     List<User> userList = userController.getUserList();
 
     public ViewHomeAfterCheck() {
+
         switch (roleName) {
             case ADMIN:
                 menuAdmin();
@@ -49,7 +50,6 @@ public class ViewHomeAfterCheck {
                             "                                              ║              3. Menu quản lý sản phẩm                  ║\n" +
                             "                                              ║              4. Menu quản lý đơn hàng                  ║\n" +
                             "                                              ║              5. Menu quản lý người dùng                ║\n" +
-                            "                                              ║              6. Hiển thị danh sách người dùng          ║\n" +
                             "                                              ║              0. Thoát chương trình                     ║\n" +
                             "                                              '————————————————————————————————————————————————————————'\n");
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
@@ -73,15 +73,12 @@ public class ViewHomeAfterCheck {
                 case 5:
                     new ViewUserManage();
                     break;
-                case 6:
-                    formShowListUser();
-                    break;
                 case 0:
                     System.err.println("     Bạn đã thoát chương trình!     ");
                     System.exit(0);
                     break;
                 default:
-                    System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0-6)!               |" + ColorConfig.RESET + "\n" +
+                    System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0-5)!               |" + ColorConfig.RESET + "\n" +
                             "'-------------------------------------------------------------'\n");
             }
         }
@@ -146,7 +143,7 @@ public class ViewHomeAfterCheck {
                             "                                              ║              2. Xem danh mục sản phẩm                  ║\n" +
                             "                                              ║              3. Tìm kiếm sản phẩm                      ║\n" +
                             "                                              ║              4. Sắp xếp sản phẩm                       ║\n" +
-                            "                                              ║              5. Mua sản phẩm                           ║\n" +
+                            "                                              ║              5. Mua hàng và quản lý giỏ hàng           ║\n" +
                             "                                              ║              6. Đăng xuất                              ║\n" +
                             "                                              ║              7. Thông tin của bạn                      ║\n" +
                             "                                              ║              8. Thay đổi mật khẩu                      ║\n" +
@@ -209,8 +206,6 @@ public class ViewHomeAfterCheck {
         System.out.println("       '——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————'\n");
     }
 
-    private void formUserManage() {
 
-    }
 }
 

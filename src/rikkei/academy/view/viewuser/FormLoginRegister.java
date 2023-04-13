@@ -4,6 +4,7 @@ import rikkei.academy.config.ColorConfig;
 import rikkei.academy.config.Config;
 import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.controller.UserController;
+import rikkei.academy.dto.request.SignInDTO;
 import rikkei.academy.dto.request.SignUpDTO;
 import rikkei.academy.dto.response.ResponseMessage;
 import rikkei.academy.model.User;
@@ -86,17 +87,17 @@ public class FormLoginRegister {
                 break;
 
         }
-        System.out.print(
-                "|     Nhập quyền tài khoản của bạn (admin, pm, user):         |\n" +
-                        "|     ");
-        String role = Config.scanner().nextLine();
+//        System.out.print(
+//                "|     Nhập quyền tài khoản của bạn (admin, pm, user):         |\n" +
+//                        "|     ");
+//        String role = Config.scanner().nextLine();
+        String role = "USER";
         Set<String> strRole = new HashSet<>();
         strRole.add(role);
         SignUpDTO sinUpDTO = new SignUpDTO(id, name, username, email, password, strRole);
 
         while (true) {
             ResponseMessage check_existed = userController.register(sinUpDTO);
-
             if (check_existed.getMessenger().equals("Username_Existed!!!")) {
                 System.out.print(
                         "|     " + ColorConfig.RED + "Nhập tên tài khoản bị trùng, vùi lòng nhập lại:" + ColorConfig.RESET + "         |\n" +
@@ -116,8 +117,8 @@ public class FormLoginRegister {
             }
         }
     }
-
     public void formLogin() {
+
         System.out.println(".----------------" + ColorConfig.BLUE + " Điền thông tin đăng nhập " + ColorConfig.RESET + "-------------------.");
         System.out.print(
                 "|     Nhập tên tài khoản đăng nhập:                           |\n" +
@@ -127,8 +128,9 @@ public class FormLoginRegister {
                 "|     Nhập mật khẩu:                                          |\n" +
                         "|     ");
         String password = Config.scanner().nextLine();
+
         while (true) {
-            ResponseMessage messenger = userController.login(new SignUpDTO(username, password));
+            ResponseMessage messenger = userController.login(new SignInDTO(username, password));
             if (messenger.getMessenger().equals("Login-Failed!!!")) {
                 System.out.println("| " + ColorConfig.RED + "Đăng nhập không thành công! Sai tên tài khoản hoặc mật khẩu" + ColorConfig.RESET + " |");
 
@@ -142,6 +144,8 @@ public class FormLoginRegister {
                 }
                 formLogin();
             } else {
+
+
                 messenger.getMessenger().equals("Login-Success");
                 System.out.println("|     " + ColorConfig.GREEN + "Đã đăng nhập thành công !" + ColorConfig.RESET + "                               |");
                 System.out.println("'-------------------------------------------------------------'");
@@ -150,14 +154,5 @@ public class FormLoginRegister {
             }
         }
     }
-
-//    public void showListUser() {
-//        System.out.println(userController.getUserList());
-//        System.out.println("Enter back to return Navbar: ");
-//        String back = Config.scanner().nextLine();
-//        if (back.equalsIgnoreCase("back")) {
-//            new HomePageMenu();
-//        }
-//    }
 }
 

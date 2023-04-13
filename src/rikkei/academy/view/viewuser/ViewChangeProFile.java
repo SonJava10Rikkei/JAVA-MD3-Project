@@ -138,9 +138,7 @@ public class ViewChangeProFile {
 
     }
 
-    private void backMenu() {
-        new ViewHomeAfterCheck();
-    }
+
 
 
 }

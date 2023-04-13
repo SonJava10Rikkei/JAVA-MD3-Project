@@ -43,7 +43,7 @@ public class ValidateInputCustom {
     public static String validateUserName = "^(?=\\S+$).{1,30}$";
 
     public static boolean validateEmail(String email) {
-        String pattern = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+        String pattern = "^(?=.{1,64}@)[\\p{L}0-9_-]+(\\.[\\p{L}0-9_-]+)*@[^-][\\p{L}0-9-]+(\\[\\p{L}0-9-]+)*(\\.[\\p{L}]{2,})$";
         return Pattern.matches(pattern, email);
     }
 

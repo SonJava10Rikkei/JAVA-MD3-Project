@@ -2,6 +2,7 @@ package rikkei.academy.controller;
 
 import rikkei.academy.config.Config;
 import rikkei.academy.config.PathConfig;
+import rikkei.academy.dto.request.SignInDTO;
 import rikkei.academy.dto.request.SignUpDTO;
 import rikkei.academy.dto.response.ResponseMessage;
 import rikkei.academy.model.User;
@@ -67,9 +68,9 @@ public class UserController {
 
     }
 
-    public ResponseMessage login(SignUpDTO signUpDTO) {
-        if (userService.checkLogin(signUpDTO.getUsername(), signUpDTO.getPassword())) {
-            User user = userService.findByUserName(signUpDTO.getUsername());
+    public ResponseMessage login(SignInDTO signInDTO) {
+        if (userService.checkLogin(signInDTO.getUsername(), signInDTO.getPassword())) {
+            User user = userService.findByUserName(signInDTO.getUsername());
 
             List<User> userLogin = new ArrayList<>();
             userLogin.add(user);

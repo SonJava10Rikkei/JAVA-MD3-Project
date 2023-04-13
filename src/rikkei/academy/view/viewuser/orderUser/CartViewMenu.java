@@ -19,9 +19,8 @@ public class CartViewMenu {
                             "                                              ║           1. Xem lại giỏ hàng                          ║\n" +
                             "                                              ║           2. Thêm sản phẩm vào giỏ hàng                ║\n" +
                             "                                              ║           3. Bớt hoặc xóa sản phẩm khỏi giỏ hàng       ║\n" +
-                            "                                              ║           4. Xóa tất cả sản phẩm khỏi giỏ hàng         ║\n" +
-                            "                                              ║           5. Thanh toán                                ║\n" +
-                            "                                              ║           6. Xem lại lịch sử mua hàng                  ║\n" +
+                            "                                              ║           4. Thanh toán                                ║\n" +
+                            "                                              ║           5. Xem lại lịch sử mua hàng                  ║\n" +
                             "                                              ║           0. Trở về Menu                               ║\n" +
                             "                                              '————————————————————————————————————————————————————————'\n");
             System.out.println(".---------------------" + ColorConfig.BLUE + " Tin nhắn của bạn " + ColorConfig.RESET + "----------------------.");
@@ -42,11 +41,10 @@ public class CartViewMenu {
                     break;
                 case 4:
 
-
+                    new CartViewManage().Payment(loginUser);
                     break;
                 case 5:
 
-                    new CartViewManage().Payment(loginUser);
                     break;
                 case 0:
                     System.out.println("Bạn đã quay về Menu !");

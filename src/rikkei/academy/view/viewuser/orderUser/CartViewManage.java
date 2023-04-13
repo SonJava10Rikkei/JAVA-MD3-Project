@@ -13,6 +13,7 @@ import rikkei.academy.model.productModel.Category;
 import rikkei.academy.model.productModel.Product;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -32,7 +33,6 @@ public class CartViewManage {
         } else {
             ShowListProductInCart(loginUser);
         }
-
     }
 
     public void addProductToCartById(User loginUser) {
@@ -50,7 +50,6 @@ public class CartViewManage {
                     product.getQuantity(),
                     categoriesString,
                     product.getDescriptions());
-
         }
         System.out.println("       '—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————'\n");
 
@@ -107,7 +106,7 @@ public class CartViewManage {
                 break;
             }
         }
-//        Product remainProduct = null;
+        //        Product remainProduct = null;
 //        for (Product product : listProduct) {
 //            if (product.getProductId() == productId) {
 //                int currentQuantyti = product.getQuantity();
@@ -135,20 +134,28 @@ public class CartViewManage {
             CartDetail updateCartDetail = productCart.get(index);
             int newQuantity = updateCartDetail.getQuantity() + quantity;
             for (Product product : listProduct) {
-                if (newQuantity > product.getQuantity()) {
-                    System.out.println("" + ColorConfig.RED + "Sản phẩm bạn mua số lượng quá lớn !" + ColorConfig.RESET + " ");
-                    System.out.println("" + ColorConfig.RED + "Đã có " + updateCartDetail.getQuantity() + " sản phẩm trong giỏ rồi !! Vui lòng nhập lại:" + ColorConfig.RESET + " ");
-                    addProductToCartById(loginUser);
+                if (product.getProductId() == productId) {
+                    if (newQuantity > product.getQuantity()) {
+                        System.out.println(" Số lượng mới đã cộng: " + newQuantity);
+                        System.out.println(" trong kho: " + product.getQuantity());
+                        System.out.println("" + ColorConfig.RED + "Sản phẩm bạn mua số lượng quá lớn !" + ColorConfig.RESET + " ");
+                        System.out.println("" + ColorConfig.RED + "Đã có " + updateCartDetail.getQuantity() + " sản phẩm trong giỏ rồi !! Vui lòng nhập lại:" + ColorConfig.RESET + " ");
+                        addProductToCartById(loginUser);
+                    }
                 }
             }
             updateCartDetail.setQuantity(newQuantity);
             System.out.println("|     " + ColorConfig.GREEN + "Cập nhật số lượng sản phẩm mua thành công !" + ColorConfig.RESET + "             |");
         } else {
             for (Product product : listProduct) {
-                if (quantity > product.getQuantity()) {
-                    System.out.println("" + ColorConfig.RED + "Sản phẩm bạn mua số lượng quá lớn !" + ColorConfig.RESET + " ");
-                    System.out.println("" + ColorConfig.RED + "Hãy nhập từ 1 đến " + product.getQuantity() + " sản phẩm ! Vui lòng nhập lại:" + ColorConfig.RESET + " ");
-                    addProductToCartById(loginUser);
+                if (product.getProductId() == productId) {
+                    if (quantity > product.getQuantity()) {
+                        System.out.println(" Số lượng mua : " + quantity);
+                        System.out.println(" trong kho: " + product.getQuantity());
+                        System.out.println("" + ColorConfig.RED + "Sản phẩm bạn mua số lượng quá lớn !" + ColorConfig.RESET + " ");
+                        System.out.println("" + ColorConfig.RED + "Hãy nhập từ 1 đến " + product.getQuantity() + " sản phẩm ! Vui lòng nhập lại:" + ColorConfig.RESET + " ");
+                        addProductToCartById(loginUser);
+                    }
                 }
             }
             int cartDetailId = 0;
@@ -161,7 +168,6 @@ public class CartViewManage {
             productCart.add(newCartDetail);
             System.out.println("|     " + ColorConfig.GREEN + "Thêm sản phẩm mới vào giỏ hàng thành công !" + ColorConfig.RESET + "             |");
         }
-
         double total = currentCart.getTotal() + selectedProduct.getProductPrice() * quantity;
         currentCart.setTotal(total);
         cartController.createCart(currentCart);
@@ -204,7 +210,7 @@ public class CartViewManage {
                     break;
                 }
                 System.out.println("|     " + ColorConfig.RED + "Số lượng sản phẩm bạn muốn bớt phải lớn hơn 0:" + ColorConfig.RESET + "          |");
-                System.out.println("|     Vui lòng nhập lại:          |");
+                System.out.println("|     Vui lòng nhập lại:                                      |");
                 System.out.print("|     ");
 
             }
@@ -232,40 +238,49 @@ public class CartViewManage {
                 break;
             }
         }
+
         if (existedCart) {
             CartDetail updateCartDetail = productCart.get(index);
             int newQuantity = updateCartDetail.getQuantity() - quantity;
             if (quantity > updateCartDetail.getQuantity()) {
                 System.out.println("" + ColorConfig.RED + "Bớt sản phẩm với số lượng quá lớn! Vui lòng nhập lại:" + ColorConfig.RESET + " ");
                 removeProductfromCartById(loginUser);
+            } else if (quantity == updateCartDetail.getQuantity()) {
+                System.out.println("|     " + ColorConfig.RED + "Số lượng sẽ bằng 0 !" + ColorConfig.RESET + "                                    |");
+                System.out.println("|     " + ColorConfig.RED + "Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không ?" + ColorConfig.RESET + "      |");
+                System.out.println("|     " + ColorConfig.YELLOW + "Mời bạn chọn có hoặc không (y/n) ?" + ColorConfig.RESET + "                   |");
+                System.out.print("|     ");
+                while (true) {
+                    System.out.print("|     ");
+                    String deleteOption = Config.scanner().nextLine();
+                    if (deleteOption.equalsIgnoreCase("y")) {
+                        List<CartDetail> updateDetail = currentCart.getProductCart();
+                        for (int i = 0; i < updateDetail.size(); i++) {
+                            if (selectedProduct.getProductId() == updateDetail.get(i).getProduct().getProductId()) {
+                                updateDetail.remove(i);
+                                break;
+                            }
+                        }
+                        currentCart.setProductCart(updateDetail);
+
+
+                        System.out.println("|     " + ColorConfig.GREEN + "Đã xóa sản phẩm!!!" + ColorConfig.RESET + "                                      |");
+                        break;
+                    } else if (deleteOption.equalsIgnoreCase("n")) {
+                        System.out.println("|     " + ColorConfig.GREEN + "Sản phẩm chưa được xóa" + ColorConfig.RESET + "                                  |");
+                        removeProductfromCartById(loginUser);
+                    } else {
+                        System.out.println("|     " + ColorConfig.YELLOW + "Vui lòng nhập Y hoặc N:" + ColorConfig.RESET + "                                 |");
+                    }
+                }
+
             }
-//            else if (quantity == updateCartDetail.getQuantity()) {
-//                System.out.println("|     " + ColorConfig.RED + "Số lượng sẽ bằng 0 !" + ColorConfig.RESET + "                                    |");
-//                System.out.println("|     " + ColorConfig.RED + "Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không ?" + ColorConfig.RESET + "      |");
-//                System.out.println("|     " + ColorConfig.YELLOW + "Mời bạn chọn có hoặc không (y/n) ?" + ColorConfig.RESET + "                   |");
-//                System.out.print("|     ");
-//                while (true) {
-//                    System.out.print("|     ");
-//                    String deleteOption = Config.scanner().nextLine();
-//                    if (deleteOption.equalsIgnoreCase("y")) {
-//
-//
-//                        System.out.println("|     " + ColorConfig.GREEN + "Đã xóa sản phẩm!!!" + ColorConfig.RESET + "                                      |");
-//                        break;
-//                    } else if (deleteOption.equalsIgnoreCase("n")) {
-//                        System.out.println("|     " + ColorConfig.GREEN + "Sản phẩm chưa được xóa" + ColorConfig.RESET + "                                  |");
-//                        removeProductfromCartById(loginUser);
-//                    } else {
-//                        System.out.println("|     " + ColorConfig.YELLOW + "Vui lòng nhập Y hoặc N:" + ColorConfig.RESET + "                                 |");
-//                    }
-//                }
-//
-//            }
             updateCartDetail.setQuantity(newQuantity);
             System.out.println("|     " + ColorConfig.GREEN + "Cập nhật số lượng sản phẩm thành công !" + ColorConfig.RESET + "                 |");
 
             double total = currentCart.getTotal() - selectedProduct.getProductPrice() * quantity;
             currentCart.setTotal(total);
+
             cartController.createCart(currentCart);
             System.out.println("|     Nhập phím bất kỳ để tiếp tục xóa sản phẩm khác          |");
             System.out.println("|     hoặc nhập 'M' để quay lại Menu:                         |");
@@ -316,5 +331,30 @@ public class CartViewManage {
 
     }
 
-
+    public void cccc() {
+        //        Product remainProduct = null;
+//        for (Product product : listProduct) {
+//            if (product.getProductId() == productId) {
+//                int currentQuantyti = product.getQuantity();
+//                int newQuantyti = currentQuantyti - quantity;
+//                if (newQuantyti >= 0) {
+//                    product.setQuantity(newQuantyti);
+//                    remainProduct = product;
+//                    break;
+//                } else {
+//                    System.out.println("Khong con du hang vui nhap laij so luong!");
+//                    System.out.println("|     Nhập phím bất kỳ để tiếp tục mua sản phẩm khac          |");
+//                    System.out.println("|     hoặc nhập 'M' để quay lại Menu:                         |");
+//                    System.out.print("|     ");
+//                    String backMenu = Config.scanner().nextLine();
+//                    System.out.println("'-------------------------------------------------------------'\n");
+//                    if (backMenu.equalsIgnoreCase("m")) {
+//                        new CartViewMenu();
+//                    } else {
+//                        addProductToCartById(loginUser);
+//                    }
+//                }
+//            }
+//        }
+    }
 }

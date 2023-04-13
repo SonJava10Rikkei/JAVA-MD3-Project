@@ -6,6 +6,7 @@ import rikkei.academy.config.customString.CustomString;
 import rikkei.academy.config.validate.ValidateInputCustom;
 import rikkei.academy.controller.CategoryController;
 import rikkei.academy.controller.ProductController;
+import rikkei.academy.controller.UserController;
 import rikkei.academy.model.productModel.Category;
 import rikkei.academy.model.productModel.Product;
 import rikkei.academy.view.viewAll.HomePageMenu;
@@ -284,7 +285,11 @@ public class ProductViewManage {
                     findAllByPriceDesc();
                     break;
                 case 0:
-                    new ViewHomeAfterCheck();
+                    if (new UserController().getCurrenUser() == null) {
+                        new HomePageMenu();
+                    } else {
+                        new ViewHomeAfterCheck();
+                    }
                 default:
                     System.out.print("" + ColorConfig.RED + "|     Hãy nhập lại lựa chọn Menu của bạn (0-2)!               |" + ColorConfig.RESET + "\n" +
                             "'-------------------------------------------------------------'\n");
